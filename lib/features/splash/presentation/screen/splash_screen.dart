@@ -21,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void navigateToNextScreen() async {
     await Future.delayed(const Duration(seconds: 3));
-    GoRouter.of(context).go(AppRouter.kLogInScreen);
+    GoRouter.of(context).go(AppRouter.kSignUpScreen);
   }
 
   @override

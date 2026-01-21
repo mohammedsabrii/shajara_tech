@@ -39,4 +39,5 @@ class AppIcons {
   static const kTrashIcon = 'assets/icons/trash_icon.svg';
   static const kTwitterIcon = 'assets/icons/twitter_icon.svg';
   static const kUiwDateIcon = 'assets/icons/uiw_date_icon.svg';
+  static const kEyeIcon = 'assets/icons/eye_icon.svg';
 }
