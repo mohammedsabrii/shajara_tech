@@ -7,9 +7,16 @@ class SignUpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: AppColors.kbackGroundColor,
-      body: SafeArea(child: SignUpScreenBody()),
+      body: SafeArea(
+        child: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).unfocus();
+          },
+          child: const SignUpScreenBody(),
+        ),
+      ),
     );
   }
 }

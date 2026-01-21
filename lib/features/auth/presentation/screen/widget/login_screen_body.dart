@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:shajara_tech/core/routes/app_router.dart';
 import 'package:shajara_tech/core/utils/app_colors.dart';
 import 'package:shajara_tech/core/utils/app_images.dart';
 import 'package:shajara_tech/core/utils/app_text_styles.dart';
@@ -39,11 +41,15 @@ class LoginScreenBody extends StatelessWidget {
           SizedBox(height: 8.h),
           Align(
             alignment: Alignment.centerLeft,
-            child: Text(
-              'هل نسيت كلمة المرور ؟',
-              style: AppTextStyles.styleAlmaraiBold10(
-                context,
-              ).copyWith(color: AppColors.kPrimaryColor),
+            child: GestureDetector(
+              onTap: () =>
+                  GoRouter.of(context).push(AppRouter.kForgotPasswordScreen),
+              child: Text(
+                'هل نسيت كلمة المرور ؟',
+                style: AppTextStyles.styleAlmaraiBold10(
+                  context,
+                ).copyWith(color: AppColors.kPrimaryColor),
+              ),
             ),
           ),
           SizedBox(height: 40.h),
