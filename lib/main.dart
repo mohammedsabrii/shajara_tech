@@ -3,11 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shajara_tech/core/routes/app_router.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ShajaraTech());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class ShajaraTech extends StatelessWidget {
+  const ShajaraTech({super.key});
 
   @override
   Widget build(BuildContext context) {
