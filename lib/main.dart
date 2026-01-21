@@ -15,7 +15,10 @@ class ShajaraTech extends StatelessWidget {
       designSize: const Size(375, 750),
       minTextAdapt: true,
       splitScreenMode: true,
-      child: MaterialApp.router(routerConfig: AppRouter.router),
+      child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        routerConfig: AppRouter.router,
+      ),
     );
   }
 }
