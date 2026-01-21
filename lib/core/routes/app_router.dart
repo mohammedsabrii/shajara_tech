@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:shajara_tech/features/auth/presentation/screen/login_screen.dart';
 import 'package:shajara_tech/features/auth/presentation/screen/sign_up_screen.dart';
 import 'package:shajara_tech/features/splash/presentation/screen/splash_screen.dart';
 
@@ -11,6 +12,10 @@ class AppRouter {
       GoRoute(
         path: kSplashScreen,
         builder: (context, state) => const SplashScreen(),
+      ),
+      GoRoute(
+        path: kLogInScreen,
+        builder: (context, state) => const LoginScreen(),
       ),
       GoRoute(
         path: kSignUpScreen,
