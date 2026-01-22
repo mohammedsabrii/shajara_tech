@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:shajara_tech/core/routes/app_router.dart';
 import 'package:shajara_tech/core/utils/app_colors.dart';
 import 'package:shajara_tech/core/utils/app_icons.dart';
-import 'package:shajara_tech/core/widgets/button_nav_item.dart';
+import 'package:shajara_tech/core/widgets/bottom_nav_item.dart';
 
-class CustomButtonNavBar extends StatefulWidget {
-  const CustomButtonNavBar({super.key});
+class CustomBottomNavBar extends StatefulWidget {
+  const CustomBottomNavBar({super.key});
 
   @override
-  State<CustomButtonNavBar> createState() => _CustomButtonNavBarState();
+  State<CustomBottomNavBar> createState() => _CustomBottomNavBarState();
 }
 
-class _CustomButtonNavBarState extends State<CustomButtonNavBar> {
+class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
   int selectedIndex = 0;
 
   @override
@@ -69,6 +71,7 @@ class _CustomButtonNavBarState extends State<CustomButtonNavBar> {
             isActive: selectedIndex == 4,
             onTap: () {
               setState(() => selectedIndex = 4);
+              GoRouter.of(context).push(AppRouter.kProfileScreen);
             },
           ),
         ],

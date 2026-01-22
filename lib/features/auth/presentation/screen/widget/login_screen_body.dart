@@ -53,7 +53,12 @@ class LoginScreenBody extends StatelessWidget {
             ),
           ),
           SizedBox(height: 40.h),
-          const CustomButton(title: 'تسجيل الدخول'),
+          CustomButton(
+            title: 'تسجيل الدخول',
+            onTap: () {
+              GoRouter.of(context).push(AppRouter.kProfileScreen);
+            },
+          ),
           SizedBox(height: 20.h),
           const DoNotHaveAccount(),
           SizedBox(height: 24.h),
