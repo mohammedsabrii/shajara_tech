@@ -108,7 +108,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                             widget.hintStyle ??
                             AppTextStyles.styleAlmaraiRegular10(
                               context,
-                            ).copyWith(color: AppColors.kGraniteGray),
+                            ).copyWith(color: AppColors.kSpanishGray),
                       ),
                     ),
                   ),

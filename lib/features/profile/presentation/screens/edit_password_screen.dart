@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shajara_tech/core/utils/app_colors.dart';
-import 'package:shajara_tech/features/profile/presentation/screens/widget/edit_peofile_screen_body.dart';
+import 'package:shajara_tech/features/profile/presentation/screens/widget/edit_password_screen_body.dart';
 
-class EditProfileScreen extends StatelessWidget {
-  const EditProfileScreen({super.key});
+class EditPasswordScreen extends StatelessWidget {
+  const EditPasswordScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,9 +11,8 @@ class EditProfileScreen extends StatelessWidget {
       backgroundColor: AppColors.kbackGroundColor,
       body: SafeArea(
         child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
-
-          child: const EditProfileScreenBody(),
+          onTap: FocusScope.of(context).unfocus,
+          child: const EditPasswordScreenBody(),
         ),
       ),
     );

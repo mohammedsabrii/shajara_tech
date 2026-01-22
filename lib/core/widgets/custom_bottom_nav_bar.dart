@@ -70,7 +70,9 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
             title: 'الحساب',
             isActive: selectedIndex == 4,
             onTap: () {
-              setState(() => selectedIndex = 4);
+              setState(() {
+                selectedIndex = 4;
+              });
               GoRouter.of(context).push(AppRouter.kProfileScreen);
             },
           ),
