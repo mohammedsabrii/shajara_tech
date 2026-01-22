@@ -3,6 +3,7 @@ import 'package:shajara_tech/features/auth/presentation/screen/login_screen.dart
 import 'package:shajara_tech/features/auth/presentation/screen/sign_up_screen.dart';
 import 'package:shajara_tech/features/forgot_password/presentation/screen/forgot_password_screen.dart';
 import 'package:shajara_tech/features/forgot_password/presentation/screen/otp_screen.dart';
+import 'package:shajara_tech/features/profile/presentation/screens/edit_profile_screen.dart';
 import 'package:shajara_tech/features/profile/presentation/screens/profile_screen.dart';
 import 'package:shajara_tech/features/splash/presentation/screen/splash_screen.dart';
 
@@ -13,6 +14,7 @@ class AppRouter {
   static const kForgotPasswordScreen = '/ForgotPasswordScreen';
   static const kOtpScreen = '/OtpScreen';
   static const kProfileScreen = '/ProfileScreen';
+  static const kEditProfileScreen = '/EditProfileScreen';
   static final router = GoRouter(
     routes: [
       GoRoute(
@@ -35,6 +37,10 @@ class AppRouter {
       GoRoute(
         path: kProfileScreen,
         builder: (context, state) => const ProfileScreen(),
+      ),
+      GoRoute(
+        path: kEditProfileScreen,
+        builder: (context, state) => const EditProfileScreen(),
       ),
     ],
   );

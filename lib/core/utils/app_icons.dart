@@ -40,4 +40,5 @@ class AppIcons {
   static const kTwitterIcon = 'assets/icons/twitter_icon.svg';
   static const kUiwDateIcon = 'assets/icons/uiw_date_icon.svg';
   static const kEyeIcon = 'assets/icons/eye_icon.svg';
+  static const kDateFill = 'assets/icons/date_fill_icon.svg';
 }

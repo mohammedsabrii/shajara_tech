@@ -86,7 +86,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
                       keyboardType: widget.keyboardType,
                       textAlign: widget.textAlign ?? TextAlign.start,
                       autocorrect: false,
-                      enableSuggestions: false,
                       controller: widget.controller,
                       cursorColor: Colors.black,
                       canRequestFocus: widget.canRequestFocus ?? true,
@@ -99,7 +98,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                       },
                       style: AppTextStyles.styleAlmaraiRegular12(
                         context,
-                      ).copyWith(color: AppColors.kTitleColor),
+                      ).copyWith(color: AppColors.kGraniteGray),
                       decoration: InputDecoration(
                         isDense: true,
                         contentPadding: EdgeInsets.zero,
@@ -109,7 +108,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                             widget.hintStyle ??
                             AppTextStyles.styleAlmaraiRegular10(
                               context,
-                            ).copyWith(color: AppColors.kSpanishGray),
+                            ).copyWith(color: AppColors.kGraniteGray),
                       ),
                     ),
                   ),

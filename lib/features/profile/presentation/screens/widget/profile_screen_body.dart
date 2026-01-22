@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shajara_tech/core/routes/app_router.dart';
 import 'package:shajara_tech/core/utils/app_icons.dart';
 import 'package:shajara_tech/core/widgets/custom_app_bar.dart';
 import 'package:shajara_tech/features/profile/presentation/screens/widget/profile_item.dart';
@@ -24,7 +25,8 @@ class ProfileScreenBody extends StatelessWidget {
           SizedBox(height: 18.h),
           const Center(child: ProfilePicture()),
           SizedBox(height: 32.h),
-          const ProfileItem(
+          ProfileItem(
+            onTap: () => context.push(AppRouter.kEditProfileScreen),
             title: 'الحساب الشخصي',
             icon: AppIcons.kProfileIcon,
           ),
