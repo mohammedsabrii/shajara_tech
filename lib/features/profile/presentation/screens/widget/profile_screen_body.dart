@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:shajara_tech/core/routes/app_router.dart';
 import 'package:shajara_tech/core/utils/app_icons.dart';
 import 'package:shajara_tech/core/widgets/custom_app_bar.dart';
+import 'package:shajara_tech/features/profile/presentation/screens/widget/delete_dialog_details.dart';
 import 'package:shajara_tech/features/profile/presentation/screens/widget/profile_item.dart';
 import 'package:shajara_tech/features/profile/presentation/screens/widget/profile_picture.dart';
 
@@ -45,7 +46,13 @@ class ProfileScreenBody extends StatelessWidget {
             icon: AppIcons.kJoinUsIcon,
           ),
           SizedBox(height: 20.h),
-          const ProfileItem(
+          ProfileItem(
+            onTap: () {
+              showDialog(
+                context: context,
+                builder: (context) => const DeleteDialogDetails(),
+              );
+            },
             title: 'حذف الحساب',
             icon: AppIcons.kDeleteAccountIcon,
           ),
