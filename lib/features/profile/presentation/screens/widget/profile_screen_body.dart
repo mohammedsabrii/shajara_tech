@@ -39,7 +39,11 @@ class ProfileScreenBody extends StatelessWidget {
             icon: AppIcons.kPasswordIcon,
           ),
           SizedBox(height: 20.h),
-          const ProfileItem(title: 'تواصل معنا', icon: AppIcons.kContactUsIcon),
+          ProfileItem(
+            onTap: () => GoRouter.of(context).push(AppRouter.kContactUsScreen),
+            title: 'تواصل معنا',
+            icon: AppIcons.kContactUsIcon,
+          ),
           SizedBox(height: 20.h),
           const ProfileItem(
             title: 'الانضمام الينا',

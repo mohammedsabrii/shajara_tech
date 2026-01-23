@@ -22,6 +22,7 @@ class CustomTextField extends StatefulWidget {
     this.fontSizeHintText,
     this.keyboardType,
     this.showEyeIcon = false,
+    this.maxLines,
   });
 
   final bool? canRequestFocus;
@@ -38,6 +39,7 @@ class CustomTextField extends StatefulWidget {
   final double? fontSizeTextFieldTitle;
   final double? fontSizeHintText;
   final TextInputType? keyboardType;
+  final int? maxLines;
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -83,6 +85,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 children: [
                   Expanded(
                     child: TextFormField(
+                      maxLines: widget.maxLines ?? 1,
                       keyboardType: widget.keyboardType,
                       textAlign: widget.textAlign ?? TextAlign.start,
                       autocorrect: false,

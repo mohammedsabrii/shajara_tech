@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shajara_tech/core/widgets/custom_button.dart';
 import 'package:shajara_tech/core/widgets/custom_text_field.dart';
-import 'package:shajara_tech/features/auth/presentation/screen/widget/auth_app_bar.dart';
+import 'package:shajara_tech/core/widgets/logo_app_bar.dart';
 import 'package:shajara_tech/features/auth/presentation/screen/widget/have_account_widget.dart';
 import 'package:shajara_tech/features/auth/presentation/screen/widget/login_with_another_ways.dart';
 import 'package:shajara_tech/features/auth/presentation/screen/widget/sign_up_header.dart';
@@ -19,7 +19,7 @@ class SignUpScreenBody extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: 8.h),
-          AuthAppBar(onBackTap: () => Navigator.pop(context)),
+          LogoAppBar(onBackTap: () => Navigator.pop(context)),
           const SignUpHeader(),
           const CustomTextField(hintText: 'الإسم بالكامل'),
           SizedBox(height: 16.h),

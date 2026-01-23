@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:shajara_tech/core/utils/app_icons.dart';
 import 'package:shajara_tech/core/widgets/custom_app_bar.dart';
 import 'package:shajara_tech/features/notification/presentation/screens/widgets/notification_item.dart';
@@ -15,7 +16,10 @@ class NotificationScreenBody extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(height: 18.h),
-            const CustomAppBar(title: 'الإشعارات'),
+            CustomAppBar(
+              title: 'الإشعارات',
+              onBackTap: () => GoRouter.of(context).pop(),
+            ),
             SizedBox(height: 32.h),
             const NotificationItem(
               icon: AppIcons.kNewJoiningRequestIcon,

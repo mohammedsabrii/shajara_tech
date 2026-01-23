@@ -3,8 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shajara_tech/core/utils/app_colors.dart';
 import 'package:shajara_tech/core/utils/app_images.dart';
 
-class AuthAppBar extends StatelessWidget {
-  const AuthAppBar({super.key, this.onBackTap});
+class LogoAppBar extends StatelessWidget {
+  const LogoAppBar({super.key, this.onBackTap});
   final VoidCallback? onBackTap;
   @override
   Widget build(BuildContext context) {

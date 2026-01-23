@@ -4,6 +4,7 @@ import 'package:shajara_tech/features/auth/presentation/screen/sign_up_screen.da
 import 'package:shajara_tech/features/forgot_password/presentation/screen/forgot_password_screen.dart';
 import 'package:shajara_tech/features/forgot_password/presentation/screen/otp_screen.dart';
 import 'package:shajara_tech/features/notification/presentation/screens/notification_screen.dart';
+import 'package:shajara_tech/features/profile/presentation/screens/contact_us_screen.dart';
 import 'package:shajara_tech/features/profile/presentation/screens/edit_password_Screen.dart';
 import 'package:shajara_tech/features/profile/presentation/screens/edit_profile_screen.dart';
 import 'package:shajara_tech/features/profile/presentation/screens/profile_screen.dart';
@@ -19,6 +20,7 @@ class AppRouter {
   static const kEditProfileScreen = '/EditProfileScreen';
   static const kEditPasswordScreen = '/EditPasswordScreen';
   static const kNotificationScreen = '/NotificationScreen';
+  static const kContactUsScreen = '/ContactUsScreen';
   static final router = GoRouter(
     routes: [
       GoRoute(
@@ -53,6 +55,10 @@ class AppRouter {
       GoRoute(
         path: kNotificationScreen,
         builder: (context, state) => const NotificationScreen(),
+      ),
+      GoRoute(
+        path: kContactUsScreen,
+        builder: (context, state) => const ContactUsScreen(),
       ),
     ],
   );
