@@ -12,37 +12,39 @@ class SignUpScreenBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 24.w),
-      child: Column(
-        textDirection: TextDirection.rtl,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(height: 8.h),
-          LogoAppBar(onBackTap: () => Navigator.pop(context)),
-          const SignUpHeader(),
-          const CustomTextField(hintText: 'الإسم بالكامل'),
-          SizedBox(height: 16.h),
-          const CustomTextField(hintText: 'البريد الالكتروني'),
-          SizedBox(height: 16.h),
-          const CustomTextField(
-            hintText: 'كلمة المرور',
-            obscureText: true,
-            showEyeIcon: true,
-          ),
-          SizedBox(height: 16.h),
-          const CustomTextField(
-            hintText: 'تأكيد كلمة المرور',
-            obscureText: true,
-            showEyeIcon: true,
-          ),
-          SizedBox(height: 40.h),
-          const CustomButton(title: 'إنشاء حساب'),
-          SizedBox(height: 20.h),
-          const HaveAccountWidget(),
-          SizedBox(height: 24.h),
-          const LoginWithAnotherWays(),
-        ],
+    return SingleChildScrollView(
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 24.w),
+        child: Column(
+          textDirection: TextDirection.rtl,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: 8.h),
+            LogoAppBar(onBackTap: () => Navigator.pop(context)),
+            const SignUpHeader(),
+            const CustomTextField(hintText: 'الإسم بالكامل'),
+            SizedBox(height: 16.h),
+            const CustomTextField(hintText: 'البريد الالكتروني'),
+            SizedBox(height: 16.h),
+            const CustomTextField(
+              hintText: 'كلمة المرور',
+              obscureText: true,
+              showEyeIcon: true,
+            ),
+            SizedBox(height: 16.h),
+            const CustomTextField(
+              hintText: 'تأكيد كلمة المرور',
+              obscureText: true,
+              showEyeIcon: true,
+            ),
+            SizedBox(height: 40.h),
+            const CustomButton(title: 'إنشاء حساب'),
+            SizedBox(height: 20.h),
+            const HaveAccountWidget(),
+            SizedBox(height: 24.h),
+            const LoginWithAnotherWays(),
+          ],
+        ),
       ),
     );
   }

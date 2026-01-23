@@ -5,8 +5,8 @@ import 'package:shajara_tech/core/widgets/custom_button.dart';
 import 'package:shajara_tech/core/widgets/custom_text_field.dart';
 import 'package:shajara_tech/core/widgets/logo_app_bar.dart';
 
-class ContactUsScreenBody extends StatelessWidget {
-  const ContactUsScreenBody({super.key});
+class JoinUsScreenBody extends StatelessWidget {
+  const JoinUsScreenBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class ContactUsScreenBody extends StatelessWidget {
             LogoAppBar(onBackTap: () => Navigator.pop(context)),
             SizedBox(height: 53.h),
             Text(
-              'تواصل معنا',
+              'الانضمام إلينا',
               style: AppTextStyles.styleAlmaraiBold18(context),
             ),
             SizedBox(height: 8.h),
@@ -35,9 +35,16 @@ class ContactUsScreenBody extends StatelessWidget {
             SizedBox(height: 16.h),
             const CustomTextField(hintText: 'البريد الالكتروني'),
             SizedBox(height: 16.h),
-            const CustomTextField(hintText: 'الموضوع'),
+            const CustomTextField(hintText: 'رقم الجوال'),
             SizedBox(height: 16.h),
-            CustomTextField(hintText: 'الرسالة', heightTextfield: 137.h),
+            const CustomTextField(hintText: 'أسم العائلة'),
+            SizedBox(height: 16.h),
+            const CustomTextField(hintText: 'حلة الشجرة'),
+            SizedBox(height: 16.h),
+            CustomTextField(
+              hintText: 'أذكر نبذة مختصرة عن القبيلة',
+              heightTextfield: 137.h,
+            ),
             SizedBox(height: 40.h),
             const CustomButton(title: 'إرسال'),
           ],

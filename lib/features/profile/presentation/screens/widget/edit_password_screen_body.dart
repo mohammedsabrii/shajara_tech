@@ -10,36 +10,38 @@ class EditPasswordScreenBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 24.w),
-      child: Column(
-        children: [
-          SizedBox(height: 16.h),
-          CustomAppBar(
-            title: 'تعديل كلمة المرور',
-            onBackTap: () => GoRouter.of(context).pop(),
-          ),
-          SizedBox(height: 32.h),
-          const CustomTextField(
-            hintText: 'كلمة المرور القديمة',
-            showEyeIcon: true,
-            obscureText: true,
-          ),
-          SizedBox(height: 16.h),
-          const CustomTextField(
-            hintText: 'كلمة المرور الجديدة',
-            showEyeIcon: true,
-            obscureText: true,
-          ),
-          SizedBox(height: 16.h),
-          const CustomTextField(
-            hintText: 'تأكيد كلمة المرور الجديدة',
-            showEyeIcon: true,
-            obscureText: true,
-          ),
-          SizedBox(height: 40.h),
-          const CustomButton(title: 'حفظ التغييرات'),
-        ],
+    return SingleChildScrollView(
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 24.w),
+        child: Column(
+          children: [
+            SizedBox(height: 16.h),
+            CustomAppBar(
+              title: 'تعديل كلمة المرور',
+              onBackTap: () => GoRouter.of(context).pop(),
+            ),
+            SizedBox(height: 32.h),
+            const CustomTextField(
+              hintText: 'كلمة المرور القديمة',
+              showEyeIcon: true,
+              obscureText: true,
+            ),
+            SizedBox(height: 16.h),
+            const CustomTextField(
+              hintText: 'كلمة المرور الجديدة',
+              showEyeIcon: true,
+              obscureText: true,
+            ),
+            SizedBox(height: 16.h),
+            const CustomTextField(
+              hintText: 'تأكيد كلمة المرور الجديدة',
+              showEyeIcon: true,
+              obscureText: true,
+            ),
+            SizedBox(height: 40.h),
+            const CustomButton(title: 'حفظ التغييرات'),
+          ],
+        ),
       ),
     );
   }

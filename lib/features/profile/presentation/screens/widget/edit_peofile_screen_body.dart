@@ -13,30 +13,32 @@ class EditProfileScreenBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 24.w),
-      child: Column(
-        children: [
-          SizedBox(height: 16.h),
-          CustomAppBar(
-            title: 'تعديل الحساب الشخصي',
-            onBackTap: () => GoRouter.of(context).pop(),
-          ),
-          SizedBox(height: 16.h),
-          const EditProfilePicture(),
-          SizedBox(height: 32.h),
-          const CustomTextField(hintText: 'عبدالرحمن محمد'),
-          SizedBox(height: 16.h),
-          const CustomTextField(hintText: 'مبرمج'),
-          SizedBox(height: 16.h),
-          const CustomDatePickerField(hintText: '20/10/2000'),
-          SizedBox(height: 16.h),
-          const CustomDropDownFiled(),
-          SizedBox(height: 16.h),
-          const CustomTextField(hintText: '01234567890'),
-          SizedBox(height: 40.h),
-          const CustomButton(title: 'حفظ التغييرات'),
-        ],
+    return SingleChildScrollView(
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 24.w),
+        child: Column(
+          children: [
+            SizedBox(height: 16.h),
+            CustomAppBar(
+              title: 'تعديل الحساب الشخصي',
+              onBackTap: () => GoRouter.of(context).pop(),
+            ),
+            SizedBox(height: 16.h),
+            const EditProfilePicture(),
+            SizedBox(height: 32.h),
+            const CustomTextField(hintText: 'عبدالرحمن محمد'),
+            SizedBox(height: 16.h),
+            const CustomTextField(hintText: 'مبرمج'),
+            SizedBox(height: 16.h),
+            const CustomDatePickerField(hintText: '20/10/2000'),
+            SizedBox(height: 16.h),
+            const CustomDropDownFiled(),
+            SizedBox(height: 16.h),
+            const CustomTextField(hintText: '01234567890'),
+            SizedBox(height: 40.h),
+            const CustomButton(title: 'حفظ التغييرات'),
+          ],
+        ),
       ),
     );
   }

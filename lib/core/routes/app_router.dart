@@ -7,6 +7,7 @@ import 'package:shajara_tech/features/notification/presentation/screens/notifica
 import 'package:shajara_tech/features/profile/presentation/screens/contact_us_screen.dart';
 import 'package:shajara_tech/features/profile/presentation/screens/edit_password_Screen.dart';
 import 'package:shajara_tech/features/profile/presentation/screens/edit_profile_screen.dart';
+import 'package:shajara_tech/features/profile/presentation/screens/join_us_screen.dart';
 import 'package:shajara_tech/features/profile/presentation/screens/profile_screen.dart';
 import 'package:shajara_tech/features/splash/presentation/screen/splash_screen.dart';
 
@@ -21,6 +22,7 @@ class AppRouter {
   static const kEditPasswordScreen = '/EditPasswordScreen';
   static const kNotificationScreen = '/NotificationScreen';
   static const kContactUsScreen = '/ContactUsScreen';
+  static const kJoinUsScreen = '/JoinUsScreen';
   static final router = GoRouter(
     routes: [
       GoRoute(
@@ -59,6 +61,10 @@ class AppRouter {
       GoRoute(
         path: kContactUsScreen,
         builder: (context, state) => const ContactUsScreen(),
+      ),
+      GoRoute(
+        path: kJoinUsScreen,
+        builder: (context, state) => const JoinUsScreen(),
       ),
     ],
   );

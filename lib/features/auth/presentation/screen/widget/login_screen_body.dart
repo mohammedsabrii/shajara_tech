@@ -16,54 +16,56 @@ class LoginScreenBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 24.w),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(height: 38.h),
-          Center(
-            child: Image.asset(
-              AppImages.kShjaraTechIconpng2,
-              height: 114.h,
-              width: 241.w,
-            ),
-          ),
-          SizedBox(height: 37.h),
-          const LoginHeader(),
-          const CustomTextField(hintText: 'البريد الالكتروني'),
-          SizedBox(height: 16.h),
-          const CustomTextField(
-            hintText: 'كلمة المرور',
-            obscureText: true,
-            showEyeIcon: true,
-          ),
-          SizedBox(height: 8.h),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: GestureDetector(
-              onTap: () =>
-                  GoRouter.of(context).push(AppRouter.kForgotPasswordScreen),
-              child: Text(
-                'هل نسيت كلمة المرور ؟',
-                style: AppTextStyles.styleAlmaraiBold10(
-                  context,
-                ).copyWith(color: AppColors.kPrimaryColor),
+    return SingleChildScrollView(
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 24.w),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: 38.h),
+            Center(
+              child: Image.asset(
+                AppImages.kShjaraTechIconpng2,
+                height: 114.h,
+                width: 241.w,
               ),
             ),
-          ),
-          SizedBox(height: 40.h),
-          CustomButton(
-            title: 'تسجيل الدخول',
-            onTap: () {
-              GoRouter.of(context).push(AppRouter.kProfileScreen);
-            },
-          ),
-          SizedBox(height: 20.h),
-          const DoNotHaveAccount(),
-          SizedBox(height: 24.h),
-          const LoginWithAnotherWays(),
-        ],
+            SizedBox(height: 37.h),
+            const LoginHeader(),
+            const CustomTextField(hintText: 'البريد الالكتروني'),
+            SizedBox(height: 16.h),
+            const CustomTextField(
+              hintText: 'كلمة المرور',
+              obscureText: true,
+              showEyeIcon: true,
+            ),
+            SizedBox(height: 8.h),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: GestureDetector(
+                onTap: () =>
+                    GoRouter.of(context).push(AppRouter.kForgotPasswordScreen),
+                child: Text(
+                  'هل نسيت كلمة المرور ؟',
+                  style: AppTextStyles.styleAlmaraiBold10(
+                    context,
+                  ).copyWith(color: AppColors.kPrimaryColor),
+                ),
+              ),
+            ),
+            SizedBox(height: 40.h),
+            CustomButton(
+              title: 'تسجيل الدخول',
+              onTap: () {
+                GoRouter.of(context).push(AppRouter.kProfileScreen);
+              },
+            ),
+            SizedBox(height: 20.h),
+            const DoNotHaveAccount(),
+            SizedBox(height: 24.h),
+            const LoginWithAnotherWays(),
+          ],
+        ),
       ),
     );
   }
