@@ -57,7 +57,10 @@ class ProfileScreenBody extends StatelessWidget {
             icon: AppIcons.kDeleteAccountIcon,
           ),
           SizedBox(height: 20.h),
-          const ProfileItem(
+          ProfileItem(
+            onTap: () => GoRouter.of(
+              context,
+            ).push(AppRouter.kNotificationScreen), //test//
             title: 'الذهاب الي لوحة التحكم',
             icon: AppIcons.kGoToControllerIcon,
           ),
