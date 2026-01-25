@@ -10,22 +10,19 @@ class FamiliesScreenBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24.w),
-        child: Column(
-          children: [
-            SizedBox(height: 11.h),
-            Image.asset(
-              AppImages.kShjaraTechIconpng2,
-              height: 58.h,
-              width: 123.w,
-            ),
-            SizedBox(height: 24.h),
-            const SearchTextField(),
-            SizedBox(height: 32.h),
-            const FamiliesGridView(),
-          ],
-        ),
+      child: Column(
+        children: [
+          SizedBox(height: 11.h),
+          Image.asset(
+            AppImages.kShjaraTechIconpng2,
+            height: 58.h,
+            width: 123.w,
+          ),
+          SizedBox(height: 24.h),
+          const SearchTextField(),
+          SizedBox(height: 32.h),
+          const FamiliesGridView(),
+        ],
       ),
     );
   }

@@ -6,18 +6,25 @@ import 'package:shajara_tech/core/utils/app_colors.dart';
 import 'package:shajara_tech/core/utils/app_icons.dart';
 import 'package:shajara_tech/core/widgets/bottom_nav_item.dart';
 
-class CustomBottomNavBar extends StatefulWidget {
+class CustomBottomNavBar extends StatelessWidget {
   const CustomBottomNavBar({super.key});
 
-  @override
-  State<CustomBottomNavBar> createState() => _CustomBottomNavBarState();
-}
+  int _getCurrentIndex(BuildContext context) {
+    final location = GoRouterState.of(context).uri.path;
 
-class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
-  int selectedIndex = 0;
+    if (location == AppRouter.kHomeScreen) return 0;
+    if (location == AppRouter.kAboutUsScreen) return 1;
+    if (location == AppRouter.kNewsScreen) return 2;
+    if (location == AppRouter.kFamiliesScreen) return 3;
+    if (location == AppRouter.kProfileScreen) return 4;
+
+    return 0;
+  }
 
   @override
   Widget build(BuildContext context) {
+    final selectedIndex = _getCurrentIndex(context);
+
     return Container(
       height: 64.h,
       padding: EdgeInsets.symmetric(vertical: 10.h),
@@ -34,7 +41,6 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
             title: 'الرئيسية',
             isActive: selectedIndex == 0,
             onTap: () {
-              setState(() => selectedIndex = 0);
               GoRouter.of(context).go(AppRouter.kHomeScreen);
             },
           ),
@@ -44,7 +50,6 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
             title: 'من نحن',
             isActive: selectedIndex == 1,
             onTap: () {
-              setState(() => selectedIndex = 1);
               GoRouter.of(context).go(AppRouter.kAboutUsScreen);
             },
           ),
@@ -54,7 +59,6 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
             title: 'الأخبار',
             isActive: selectedIndex == 2,
             onTap: () {
-              setState(() => selectedIndex = 2);
               GoRouter.of(context).go(AppRouter.kNewsScreen);
             },
           ),
@@ -64,7 +68,6 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
             title: 'العائلات',
             isActive: selectedIndex == 3,
             onTap: () {
-              setState(() => selectedIndex = 3);
               GoRouter.of(context).go(AppRouter.kFamiliesScreen);
             },
           ),
@@ -74,10 +77,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
             title: 'الحساب',
             isActive: selectedIndex == 4,
             onTap: () {
-              setState(() {
-                selectedIndex = 4;
-              });
-              GoRouter.of(context).push(AppRouter.kProfileScreen);
+              GoRouter.of(context).go(AppRouter.kProfileScreen);
             },
           ),
         ],
