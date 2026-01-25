@@ -35,6 +35,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
             isActive: selectedIndex == 0,
             onTap: () {
               setState(() => selectedIndex = 0);
+              GoRouter.of(context).go(AppRouter.kHomeScreen);
             },
           ),
           BottomNavItem(
@@ -44,6 +45,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
             isActive: selectedIndex == 1,
             onTap: () {
               setState(() => selectedIndex = 1);
+              GoRouter.of(context).go(AppRouter.kAboutUsScreen);
             },
           ),
           BottomNavItem(
@@ -53,6 +55,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
             isActive: selectedIndex == 2,
             onTap: () {
               setState(() => selectedIndex = 2);
+              GoRouter.of(context).go(AppRouter.kNewsScreen);
             },
           ),
           BottomNavItem(
@@ -62,6 +65,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
             isActive: selectedIndex == 3,
             onTap: () {
               setState(() => selectedIndex = 3);
+              GoRouter.of(context).go(AppRouter.kFamiliesScreen);
             },
           ),
           BottomNavItem(

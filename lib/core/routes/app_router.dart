@@ -1,8 +1,16 @@
 import 'package:go_router/go_router.dart';
+import 'package:shajara_tech/features/Families_details/presentation/screen/families_details_screen.dart';
+import 'package:shajara_tech/features/NewsDetails/news_details.dart';
+import 'package:shajara_tech/features/aboutUs/about_us.dart';
 import 'package:shajara_tech/features/auth/presentation/screen/login_screen.dart';
 import 'package:shajara_tech/features/auth/presentation/screen/sign_up_screen.dart';
+import 'package:shajara_tech/features/chat/presentation/screen/chat_screen.dart';
+import 'package:shajara_tech/features/families/presentation/screens/families_screen.dart';
 import 'package:shajara_tech/features/forgot_password/presentation/screen/forgot_password_screen.dart';
 import 'package:shajara_tech/features/forgot_password/presentation/screen/otp_screen.dart';
+import 'package:shajara_tech/features/home/home.dart';
+import 'package:shajara_tech/features/join%20to%20family/presentation/screen/join_to_family_screen.dart';
+import 'package:shajara_tech/features/news/news_screen.dart';
 import 'package:shajara_tech/features/notification/presentation/screens/notification_screen.dart';
 import 'package:shajara_tech/features/profile/presentation/screens/contact_us_screen.dart';
 import 'package:shajara_tech/features/profile/presentation/screens/edit_password_Screen.dart';
@@ -17,6 +25,14 @@ class AppRouter {
   static const kSignUpScreen = '/SignUpScreen';
   static const kForgotPasswordScreen = '/ForgotPasswordScreen';
   static const kOtpScreen = '/OtpScreen';
+  static const kHomeScreen = '/HomeeScreen';
+  static const kNewsScreen = '/NewsScreen';
+  static const kNewsDetailsScreen = '/NewsDetailsScreen';
+  static const kAboutUsScreen = '/AboutUsScreen';
+  static const kFamiliesScreen = '/FamiliesScreen';
+  static const kFamiliesDetailsScreen = '/FamiliesDetailsScreen';
+  static const kJoinToFamilyScreen = '/JoinToFamilyScreen';
+  static const kChatScreen = '/ChatScreen';
   static const kProfileScreen = '/ProfileScreen';
   static const kEditProfileScreen = '/EditProfileScreen';
   static const kEditPasswordScreen = '/EditPasswordScreen';
@@ -42,6 +58,38 @@ class AppRouter {
         builder: (context, state) => const ForgotPasswordScreen(),
       ),
       GoRoute(path: kOtpScreen, builder: (context, state) => const OtpScreen()),
+      GoRoute(
+        path: kHomeScreen,
+        builder: (context, state) => const HomeeScreen(),
+      ),
+      GoRoute(
+        path: kNewsScreen,
+        builder: (context, state) => const NewsScreen(),
+      ),
+      GoRoute(
+        path: kNewsDetailsScreen,
+        builder: (context, state) => const NewsDetailsScreen(),
+      ),
+      GoRoute(
+        path: kAboutUsScreen,
+        builder: (context, state) => const AboutUsScreen(),
+      ),
+      GoRoute(
+        path: kFamiliesScreen,
+        builder: (context, state) => const FamiliesScreen(),
+      ),
+      GoRoute(
+        path: kFamiliesDetailsScreen,
+        builder: (context, state) => const FamiliesDetailsScreen(),
+      ),
+      GoRoute(
+        path: kJoinToFamilyScreen,
+        builder: (context, state) => const JoinToFamilyScreen(),
+      ),
+      GoRoute(
+        path: kChatScreen,
+        builder: (context, state) => const ChatScreen(),
+      ),
       GoRoute(
         path: kProfileScreen,
         builder: (context, state) => const ProfileScreen(),
