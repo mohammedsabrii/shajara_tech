@@ -23,6 +23,7 @@ class CustomTextField extends StatefulWidget {
     this.keyboardType,
     this.showEyeIcon = false,
     this.maxLines,
+    this.borderColor,
   });
 
   final bool? canRequestFocus;
@@ -40,6 +41,7 @@ class CustomTextField extends StatefulWidget {
   final double? fontSizeHintText;
   final TextInputType? keyboardType;
   final int? maxLines;
+  final Color? borderColor;
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -76,9 +78,11 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 borderRadius: BorderRadius.circular(4),
                 color: Colors.white,
                 border: Border.all(
-                  color: fieldState.hasError
-                      ? Colors.red
-                      : AppColors.kSpanishGray.withValues(alpha: 0.5),
+                  color:
+                      widget.borderColor ??
+                      (fieldState.hasError
+                          ? Colors.red
+                          : AppColors.kSpanishGray.withValues(alpha: 0.5)),
                 ),
               ),
               child: Row(

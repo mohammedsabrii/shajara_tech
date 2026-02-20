@@ -1,0 +1,94 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
+import 'package:shajara_tech/core/widgets/custom_app_bar.dart';
+import 'package:shajara_tech/core/widgets/custom_date_picker_field.dart';
+import 'package:shajara_tech/core/widgets/custom_text_field.dart';
+import 'package:shajara_tech/features/edit_profile/domain/entity/profile_info_entity.dart';
+import 'package:shajara_tech/features/edit_profile/presentation/screen/widget/edit_profile_button.dart';
+import 'package:shajara_tech/features/edit_profile/presentation/screen/widget/edit_profile_picture.dart';
+import 'package:shajara_tech/features/edit_profile/presentation/screen/widget/custom_gender_dropdown.dart';
+
+class EditProfileScreenBody extends StatefulWidget {
+  const EditProfileScreenBody({super.key, required this.profileInfoEntity});
+  final ProfileInfoEntity profileInfoEntity;
+
+  @override
+  State<EditProfileScreenBody> createState() => _EditProfileScreenBodyState();
+}
+
+class _EditProfileScreenBodyState extends State<EditProfileScreenBody> {
+  final _editUserNameController = TextEditingController();
+  final _editUserJopController = TextEditingController();
+  final _editDateOfBirthController = TextEditingController();
+  final _editUserLifeStatusController = TextEditingController();
+  final _editUserPhoneNumperController = TextEditingController();
+
+  @override
+  void dispose() {
+    _editUserNameController.dispose();
+    _editUserJopController.dispose();
+    _editDateOfBirthController.dispose();
+    _editUserLifeStatusController.dispose();
+    _editUserPhoneNumperController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 24.w),
+        child: Column(
+          children: [
+            SizedBox(height: 16.h),
+            CustomAppBar(
+              title: 'تعديل الحساب الشخصي',
+              onBackTap: () => GoRouter.of(context).pop(),
+            ),
+            SizedBox(height: 16.h),
+            const EditProfilePicture(),
+            SizedBox(height: 32.h),
+            CustomTextField(
+              controller: _editUserNameController,
+              hintText: widget.profileInfoEntity.userName,
+            ),
+            SizedBox(height: 16.h),
+            CustomTextField(
+              controller: _editUserJopController,
+              hintText: widget.profileInfoEntity.userJop,
+            ),
+            SizedBox(height: 16.h),
+            CustomDatePickerField(
+              controller: _editDateOfBirthController,
+              hintText: DateFormat(
+                'yyyy-MM-dd',
+              ).format(widget.profileInfoEntity.dateOfBirth),
+            ),
+            SizedBox(height: 16.h),
+            CustomDropDownFiled(
+              controller: _editUserLifeStatusController,
+              hint: widget.profileInfoEntity.userLifeStatus,
+            ),
+            SizedBox(height: 16.h),
+            CustomTextField(
+              controller: _editUserPhoneNumperController,
+              hintText: widget.profileInfoEntity.userPhoneNumper.toString(),
+              keyboardType: TextInputType.phone,
+            ),
+            SizedBox(height: 40.h),
+            EditProfileButton(
+              editUserNameController: _editUserNameController,
+              editUserJopController: _editUserJopController,
+              editDateOfBirthController: _editDateOfBirthController,
+              editUserLifeStatusController: _editUserLifeStatusController,
+              editUserPhoneNumperController: _editUserPhoneNumperController,
+              originalProfileInfo: widget.profileInfoEntity,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

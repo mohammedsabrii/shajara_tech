@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shajara_tech/core/utils/app_text_styles.dart';
 import 'package:shajara_tech/core/widgets/custom_app_bar.dart';
 import 'package:shajara_tech/core/widgets/custom_button.dart';
 import 'package:shajara_tech/core/widgets/custom_date_picker_field.dart';
 import 'package:shajara_tech/core/widgets/custom_text_field.dart';
-import 'package:shajara_tech/features/profile/presentation/screens/widget/custom_gender_dropdown.dart';
 
 class JoinToFamilyScreenBody extends StatelessWidget {
   const JoinToFamilyScreenBody({super.key});
@@ -29,13 +29,20 @@ class JoinToFamilyScreenBody extends StatelessWidget {
             SizedBox(height: 16.h),
             const CustomDatePickerField(hintText: '20/10/2000'),
             SizedBox(height: 16.h),
-            const CustomDropDownFiled(),
+            // const CustomDropDownFiled(),
             SizedBox(height: 16.h),
             const CustomTextField(hintText: 'رقم الموبايل'),
             SizedBox(height: 16.h),
             CustomTextField(hintText: 'الرسالة', heightTextfield: 137.h),
             SizedBox(height: 40.h),
-            const CustomButton(title: 'إرسال الطلب'),
+            CustomButton(
+              titleWidget: Text(
+                'إرسال الطلب',
+                style: AppTextStyles.styleAlmaraiExtraBold14(
+                  context,
+                ).copyWith(color: Colors.white),
+              ),
+            ),
           ],
         ),
       ),

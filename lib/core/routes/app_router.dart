@@ -1,21 +1,24 @@
 import 'package:go_router/go_router.dart';
-import 'package:shajara_tech/features/Families_details/presentation/screen/families_details_screen.dart';
+import 'package:shajara_tech/features/tribe_details/presentation/screen/tribe_details_screen.dart';
 import 'package:shajara_tech/features/NewsDetails/news_details.dart';
 import 'package:shajara_tech/features/aboutUs/about_us.dart';
 import 'package:shajara_tech/features/auth/presentation/screen/login_screen.dart';
 import 'package:shajara_tech/features/auth/presentation/screen/sign_up_screen.dart';
 import 'package:shajara_tech/features/chat/presentation/screen/chat_screen.dart';
-import 'package:shajara_tech/features/families/presentation/screens/families_screen.dart';
+import 'package:shajara_tech/features/edit_password/presentation/screen/edit_password_screen.dart';
+import 'package:shajara_tech/features/tribes/domain/entitys/tribes_details_entity.dart';
+import 'package:shajara_tech/features/tribes/domain/entitys/tribes_entity.dart';
+import 'package:shajara_tech/features/tribes/presentation/screens/tribes_screen.dart';
 import 'package:shajara_tech/features/forgot_password/presentation/screen/forgot_password_screen.dart';
 import 'package:shajara_tech/features/forgot_password/presentation/screen/otp_screen.dart';
-import 'package:shajara_tech/features/home/home.dart';
+import 'package:shajara_tech/features/forgot_password/presentation/screen/reset_password_screen.dart';
+import 'package:shajara_tech/features/home/presentation/screen/home.dart';
 import 'package:shajara_tech/features/join%20to%20family/presentation/screen/join_to_family_screen.dart';
-import 'package:shajara_tech/features/news/news_screen.dart';
+import 'package:shajara_tech/features/news/presentation/screen/news_screen.dart';
 import 'package:shajara_tech/features/notification/presentation/screens/notification_screen.dart';
-import 'package:shajara_tech/features/profile/presentation/screens/contact_us_screen.dart';
-import 'package:shajara_tech/features/profile/presentation/screens/edit_password_Screen.dart';
-import 'package:shajara_tech/features/profile/presentation/screens/edit_profile_screen.dart';
-import 'package:shajara_tech/features/profile/presentation/screens/join_us_screen.dart';
+import 'package:shajara_tech/features/contact_us/presentation/screens/contact_us_screen.dart';
+import 'package:shajara_tech/features/edit_profile/presentation/screen/edit_profile_screen.dart';
+import 'package:shajara_tech/features/join_us/presentation/screen/join_us_screen.dart';
 import 'package:shajara_tech/features/profile/presentation/screens/profile_screen.dart';
 import 'package:shajara_tech/features/splash/presentation/screen/splash_screen.dart';
 
@@ -30,10 +33,11 @@ class AppRouter {
   static const kNewsDetailsScreen = '/NewsDetailsScreen';
   static const kAboutUsScreen = '/AboutUsScreen';
   static const kFamiliesScreen = '/FamiliesScreen';
-  static const kFamiliesDetailsScreen = '/FamiliesDetailsScreen';
+  static const kTribeDetailsScreen = '/FamiliesDetailsScreen';
   static const kJoinToFamilyScreen = '/JoinToFamilyScreen';
   static const kChatScreen = '/ChatScreen';
   static const kProfileScreen = '/ProfileScreen';
+  static const kResetPasswordScreen = '/ResetPasswordScreen';
   static const kEditProfileScreen = '/EditProfileScreen';
   static const kEditPasswordScreen = '/EditPasswordScreen';
   static const kNotificationScreen = '/NotificationScreen';
@@ -57,7 +61,23 @@ class AppRouter {
         path: kForgotPasswordScreen,
         builder: (context, state) => const ForgotPasswordScreen(),
       ),
-      GoRoute(path: kOtpScreen, builder: (context, state) => const OtpScreen()),
+      GoRoute(
+        path: kOtpScreen,
+        builder: (context, state) {
+          final email = state.extra as String;
+          return OtpScreen(email: email);
+        },
+      ),
+      GoRoute(
+        path: kResetPasswordScreen,
+        builder: (context, state) {
+          final params = state.extra as Map<String, String>;
+          return ResetPasswordScreen(
+            email: params['email']!,
+            otpCode: params['otpCode']!,
+          );
+        },
+      ),
       GoRoute(
         path: kHomeScreen,
         builder: (context, state) => const HomeeScreen(),
@@ -76,11 +96,12 @@ class AppRouter {
       ),
       GoRoute(
         path: kFamiliesScreen,
-        builder: (context, state) => const FamiliesScreen(),
+        builder: (context, state) => const TribesScreen(),
       ),
       GoRoute(
-        path: kFamiliesDetailsScreen,
-        builder: (context, state) => const FamiliesDetailsScreen(),
+        path: kTribeDetailsScreen,
+        builder: (context, state) =>
+            TribeDetailsScreen(tribesEntity: state.extra as TribesEntity),
       ),
       GoRoute(
         path: kJoinToFamilyScreen,
@@ -88,7 +109,8 @@ class AppRouter {
       ),
       GoRoute(
         path: kChatScreen,
-        builder: (context, state) => const ChatScreen(),
+        builder: (context, state) =>
+            ChatScreen(tribesDetailsEntity: state.extra as TribesDetailsEntity),
       ),
       GoRoute(
         path: kProfileScreen,
@@ -112,7 +134,9 @@ class AppRouter {
       ),
       GoRoute(
         path: kJoinUsScreen,
-        builder: (context, state) => const JoinUsScreen(),
+        builder: (context, state) => JoinUsScreen(
+          tribesDetailsEntity: state.extra as TribesDetailsEntity,
+        ),
       ),
     ],
   );

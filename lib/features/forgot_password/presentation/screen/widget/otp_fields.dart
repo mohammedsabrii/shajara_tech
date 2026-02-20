@@ -11,10 +11,19 @@ class OtpFields extends StatefulWidget {
 class OtpFieldsState extends State<OtpFields> {
   final List<TextEditingController> controllers = List.generate(
     4,
-    (code) => TextEditingController(),
+    (index) => TextEditingController(),
   );
+
   String getOtpCode() {
     return controllers.map((controller) => controller.text).join();
+  }
+
+  @override
+  void dispose() {
+    for (var controller in controllers) {
+      controller.dispose();
+    }
+    super.dispose();
   }
 
   @override
@@ -24,10 +33,12 @@ class OtpFieldsState extends State<OtpFields> {
         textDirection: TextDirection.ltr,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
           children: List.generate(
             4,
-            (index) => OtpTextField(controller: controllers[index]),
+            (index) => OtpTextField(
+              controller: controllers[index],
+              isLast: index == 3,
+            ),
           ),
         ),
       ),

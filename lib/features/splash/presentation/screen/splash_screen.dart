@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shajara_tech/core/routes/app_router.dart';
+import 'package:shajara_tech/core/service/service_locator.dart';
 import 'package:shajara_tech/core/utils/app_colors.dart';
 import 'package:shajara_tech/core/utils/app_images.dart';
+import 'package:shajara_tech/features/auth/data/data_sources/auth_local_data_source.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -16,12 +18,20 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
 
-    navigateToNextScreen();
+    _checkAuth();
   }
 
-  void navigateToNextScreen() async {
+  Future<void> _checkAuth() async {
     await Future.delayed(const Duration(seconds: 3));
-    GoRouter.of(context).go(AppRouter.kLogInScreen);
+    final localDataSource = sl<AuthLocalDataSource>();
+
+    final isLoggedIn = await localDataSource.isLoggedIn();
+
+    if (isLoggedIn) {
+      GoRouter.of(context).go(AppRouter.kHomeScreen);
+    } else {
+      GoRouter.of(context).go(AppRouter.kLogInScreen);
+    }
   }
 
   @override

@@ -3,9 +3,14 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OtpTextField extends StatelessWidget {
-  const OtpTextField({super.key, required this.controller});
+  const OtpTextField({
+    super.key,
+    required this.controller,
+    this.isLast = false,
+  });
 
   final TextEditingController controller;
+  final bool isLast;
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +21,10 @@ class OtpTextField extends StatelessWidget {
         controller: controller,
         textDirection: TextDirection.ltr,
         onChanged: (value) {
-          if (value.length == 1) {
+          if (value.length == 1 && !isLast) {
             FocusScope.of(context).nextFocus();
+          } else if (value.isEmpty) {
+            FocusScope.of(context).previousFocus();
           }
         },
         keyboardType: TextInputType.number,
@@ -30,14 +37,14 @@ class OtpTextField extends StatelessWidget {
           filled: true,
           fillColor: Colors.white,
           contentPadding: EdgeInsets.zero,
-          enabledBorder: outLineInputBorderMeathod(),
-          focusedBorder: outLineInputBorderMeathod(),
+          enabledBorder: outLineInputBorderMethod(),
+          focusedBorder: outLineInputBorderMethod(),
         ),
       ),
     );
   }
 
-  OutlineInputBorder outLineInputBorderMeathod() {
+  OutlineInputBorder outLineInputBorderMethod() {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(12.r),
       borderSide: BorderSide.none,

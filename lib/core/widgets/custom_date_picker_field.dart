@@ -10,6 +10,7 @@ class CustomDatePickerField extends StatefulWidget {
   const CustomDatePickerField({
     super.key,
     required this.hintText,
+    this.controller,
     this.initialDate,
     this.firstDate,
     this.lastDate,
@@ -19,6 +20,7 @@ class CustomDatePickerField extends StatefulWidget {
   });
 
   final String hintText;
+  final TextEditingController? controller;
   final DateTime? initialDate;
   final DateTime? firstDate;
   final DateTime? lastDate;
@@ -31,7 +33,21 @@ class CustomDatePickerField extends StatefulWidget {
 }
 
 class _CustomDatePickerFieldState extends State<CustomDatePickerField> {
-  final TextEditingController _controller = TextEditingController();
+  late TextEditingController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = widget.controller ?? TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    if (widget.controller == null) {
+      _controller.dispose();
+    }
+    super.dispose();
+  }
 
   Future<void> _pickDate(BuildContext context) async {
     DateTime? pickedDate = await showDatePicker(
@@ -50,7 +66,6 @@ class _CustomDatePickerFieldState extends State<CustomDatePickerField> {
               bodyLarge: AppTextStyles.styleAlmaraiBold13(context),
               bodyMedium: AppTextStyles.styleAlmaraiBold14(context),
             ),
-
             colorScheme: const ColorScheme(
               brightness: Brightness.light,
               primary: AppColors.kPrimaryColor,
@@ -70,11 +85,9 @@ class _CustomDatePickerFieldState extends State<CustomDatePickerField> {
 
     if (pickedDate != null) {
       String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
-
       setState(() {
         _controller.text = formattedDate;
       });
-
       widget.onDateSelected?.call(pickedDate);
     }
   }
@@ -84,7 +97,6 @@ class _CustomDatePickerFieldState extends State<CustomDatePickerField> {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10.w),
       height: widget.heightTextfield ?? 40,
-
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(4),
         color: Colors.white,

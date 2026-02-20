@@ -9,7 +9,6 @@ class AboutUsHeaderImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(8.r),
         child: Image.asset(
           AppImages.kTestImage2,
           height: 191.h,
