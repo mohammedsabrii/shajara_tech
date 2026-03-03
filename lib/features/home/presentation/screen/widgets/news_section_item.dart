@@ -10,9 +10,11 @@ class HomeNewsSectionItem extends StatelessWidget {
     super.key,
     required this.date,
     required this.newsTitle,
+    required this.imageUrl,
   });
   final DateTime date;
   final String newsTitle;
+  final String imageUrl;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,8 +28,8 @@ class HomeNewsSectionItem extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(8),
             child: Image.network(
-              'https://picsum.photos/200/140',
-              height: 132.h,
+              imageUrl,
+              height: 128.h,
               width: 156.w,
               fit: BoxFit.cover,
               errorBuilder: (context, error, stackTrace) => Container(
@@ -59,7 +61,6 @@ class HomeNewsSectionItem extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             style: AppTextStyles.styleAlmaraiRegular10(context),
           ),
-          const SizedBox(height: 6),
         ],
       ),
     );

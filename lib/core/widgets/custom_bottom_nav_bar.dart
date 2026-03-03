@@ -27,10 +27,16 @@ class CustomBottomNavBar extends StatelessWidget {
 
     return Container(
       height: 64.h,
-      padding: EdgeInsets.symmetric(vertical: 10.h),
+      padding: EdgeInsets.only(top: 5.h),
       decoration: const BoxDecoration(
         color: AppColors.kbackGroundColor,
-        boxShadow: [BoxShadow(blurRadius: 10, color: Colors.black12)],
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black12,
+            blurRadius: 10,
+            offset: Offset(0, -5),
+          ),
+        ],
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -50,7 +56,7 @@ class CustomBottomNavBar extends StatelessWidget {
             title: 'من نحن',
             isActive: selectedIndex == 1,
             onTap: () {
-              GoRouter.of(context).go(AppRouter.kAboutUsScreen);
+              GoRouter.of(context).push(AppRouter.kAboutUsScreen);
             },
           ),
           BottomNavItem(
@@ -59,7 +65,7 @@ class CustomBottomNavBar extends StatelessWidget {
             title: 'الأخبار',
             isActive: selectedIndex == 2,
             onTap: () {
-              GoRouter.of(context).go(AppRouter.kNewsScreen);
+              GoRouter.of(context).push(AppRouter.kNewsScreen);
             },
           ),
           BottomNavItem(
@@ -68,7 +74,7 @@ class CustomBottomNavBar extends StatelessWidget {
             title: 'العائلات',
             isActive: selectedIndex == 3,
             onTap: () {
-              GoRouter.of(context).go(AppRouter.kFamiliesScreen);
+              GoRouter.of(context).push(AppRouter.kFamiliesScreen);
             },
           ),
           BottomNavItem(
@@ -77,7 +83,7 @@ class CustomBottomNavBar extends StatelessWidget {
             title: 'الحساب',
             isActive: selectedIndex == 4,
             onTap: () {
-              GoRouter.of(context).go(AppRouter.kProfileScreen);
+              GoRouter.of(context).push(AppRouter.kProfileScreen);
             },
           ),
         ],

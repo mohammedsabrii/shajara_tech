@@ -11,9 +11,12 @@ class NewsData extends NewsEntity {
   String? image;
   DateTime? publishedAt;
   String? visibility;
+  String? adminApprovalStatus;
   DateTime? createdAt;
   DateTime? updatedAt;
   int? familyTreeId;
+  String? imageUrl;
+  String? coverImageUrl;
   FamilyTree? familyTree;
 
   NewsData({
@@ -25,13 +28,17 @@ class NewsData extends NewsEntity {
     this.image,
     this.publishedAt,
     this.visibility,
+    this.adminApprovalStatus,
     this.createdAt,
     this.updatedAt,
     this.familyTreeId,
+    this.imageUrl,
+    this.coverImageUrl,
     this.familyTree,
   }) : super(
          newsDate: createdAt ?? DateTime.now(),
          newsTitle: shortDescription ?? '',
+         newsImage: imageUrl ?? 'https://picsum.photos/200/140',
        );
 
   factory NewsData.fromJson(Map<String, dynamic> json) => NewsData(
@@ -45,6 +52,7 @@ class NewsData extends NewsEntity {
         ? null
         : DateTime.parse(json['published_at'] as String),
     visibility: json['visibility'] as String?,
+    adminApprovalStatus: json['admin_approval_status'] as String?,
     createdAt: json['created_at'] == null
         ? null
         : DateTime.parse(json['created_at'] as String),
@@ -52,6 +60,8 @@ class NewsData extends NewsEntity {
         ? null
         : DateTime.parse(json['updated_at'] as String),
     familyTreeId: json['family_tree_id'] as int?,
+    imageUrl: json['image_url'] as String?,
+    coverImageUrl: json['cover_image_url'] as String?,
     familyTree: json['family_tree'] == null
         ? null
         : FamilyTree.fromJson(json['family_tree'] as Map<String, dynamic>),
@@ -66,9 +76,12 @@ class NewsData extends NewsEntity {
     'image': image,
     'published_at': publishedAt?.toIso8601String(),
     'visibility': visibility,
+    'admin_approval_status': adminApprovalStatus,
     'created_at': createdAt?.toIso8601String(),
     'updated_at': updatedAt?.toIso8601String(),
     'family_tree_id': familyTreeId,
+    'image_url': imageUrl,
+    'cover_image_url': coverImageUrl,
     'family_tree': familyTree?.toJson(),
   };
 }

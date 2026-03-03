@@ -58,7 +58,7 @@ class SendJoinUsRequisetButton extends StatelessWidget {
               : () {
                   context.read<JoinUsCubit>().joinUs(
                     joinUsModel: JoinUsModel(
-                      id: tribesDetailsEntity.id ?? 10,
+                      id: tribesDetailsEntity.id,
                       userName: nameController.text.trim(),
                       userEmail: emailController.text.trim(),
                       userBirthDate: dateOfBirthController.text.trim(),

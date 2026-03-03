@@ -38,13 +38,19 @@ class _SignUpButtonState extends State<SignUpButton> {
     return BlocListener<SignUpCubit, SignUpState>(
       listener: (context, state) {
         if (state is SignUpLoading) {
-          isLoading = true;
+          setState(() {
+            isLoading = true;
+          });
         } else if (state is SignUpSuccess) {
-          isLoading = false;
+          setState(() {
+            isLoading = false;
+          });
           GoRouter.of(context).go(AppRouter.kLogInScreen);
           customShowSnackBar(context, title: 'تم إنشاء الحساب بنجاح');
         } else if (state is SignUpFailure) {
-          isLoading = false;
+          setState(() {
+            isLoading = false;
+          });
           customShowSnackBar(context, title: state.errorMessage);
         }
       },

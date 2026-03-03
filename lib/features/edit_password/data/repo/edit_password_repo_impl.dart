@@ -10,13 +10,11 @@ class EditPasswordRepoImpl implements EditPasswordRepo {
   EditPasswordRepoImpl({required this.editPasswordRemoteDataSource});
   @override
   Future<Either<Failure, Unit>> editPassword({
-    required String oldPassword,
     required String newPassword,
     required String confirmNewPassword,
   }) async {
     try {
       await editPasswordRemoteDataSource.editPassword(
-        oldPassword: oldPassword,
         newPassword: newPassword,
         confirmNewPassword: confirmNewPassword,
       );

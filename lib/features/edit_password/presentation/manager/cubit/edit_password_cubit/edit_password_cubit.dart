@@ -8,13 +8,11 @@ class EditPasswordCubit extends Cubit<EditPasswordState> {
   EditPasswordCubit(this.editPasswordUseCase) : super(EditPasswordInitial());
   final EditPasswordUseCase editPasswordUseCase;
   Future<void> editPassword({
-    required String oldPassword,
     required String newPassword,
     required String confirmNewPassword,
   }) async {
     emit(EditPasswordLoading());
     final data = await editPasswordUseCase.call(
-      oldPassword: oldPassword,
       newPassword: newPassword,
       confirmNewPassword: confirmNewPassword,
     );

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shajara_tech/core/utils/app_images.dart';
-import 'package:shajara_tech/features/tribe_details/presentation/screen/widget/section_item.dart';
+import 'package:shajara_tech/features/tribe_details/presentation/screen/widget/news_section_item.dart';
+import 'package:shajara_tech/features/tribe_details/presentation/screen/widget/occasion_section_item.dart';
 import 'package:shajara_tech/features/tribe_details/presentation/screen/widget/tribe_details_app_bar.dart';
 import 'package:shajara_tech/features/tribe_details/presentation/screen/widget/tribe_card.dart';
 import 'package:shajara_tech/features/tribes/domain/entitys/tribes_details_entity.dart';
@@ -16,6 +17,7 @@ class TribeDetailsScreenBody extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24.w),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 16.h),
             TribeDetailsAppBar(tribesDetailsEntity: tribesDetailsEntity),
@@ -32,9 +34,16 @@ class TribeDetailsScreenBody extends StatelessWidget {
               ),
             ),
             SizedBox(height: 28.h),
-            const SectionWithItems(title: 'المناسبات القادمة لقبيلة بني خالد'),
-            SizedBox(height: 28.h),
-            const SectionWithItems(title: 'مقالات وأخبار قبيلة بني خالد'),
+            if (tribesDetailsEntity.tribeOccasionEntity != null)
+              OccasionSectionWithItems(
+                occasionEntity: tribesDetailsEntity.tribeOccasionEntity ?? [],
+                title: 'المناسبات القادمة لقبيلة بني خالد',
+              ),
+            if (tribesDetailsEntity.tribeNewsEntity != null)
+              NewsSectionWithItems(
+                newsEntity: tribesDetailsEntity.tribeNewsEntity ?? [],
+                title: 'مقالات وأخبار قبيلة بني خالد',
+              ),
           ],
         ),
       ),

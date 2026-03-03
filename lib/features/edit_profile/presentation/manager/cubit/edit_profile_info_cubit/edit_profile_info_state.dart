@@ -7,9 +7,7 @@ final class EditProfileInfoInitial extends EditProfileInfoState {}
 
 final class EditProfileInfoLoading extends EditProfileInfoState {}
 
-final class EditProfileInfoSuccess extends EditProfileInfoState {
-
-}
+final class EditProfileInfoSuccess extends EditProfileInfoState {}
 
 final class EditProfileInfoFailure extends EditProfileInfoState {
   final String errorMessage;

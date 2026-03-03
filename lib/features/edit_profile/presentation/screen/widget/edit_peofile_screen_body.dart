@@ -64,7 +64,7 @@ class _EditProfileScreenBodyState extends State<EditProfileScreenBody> {
               controller: _editDateOfBirthController,
               hintText: DateFormat(
                 'yyyy-MM-dd',
-              ).format(widget.profileInfoEntity.dateOfBirth),
+              ).format(DateTime.parse(widget.profileInfoEntity.dateOfBirth)),
             ),
             SizedBox(height: 16.h),
             CustomDropDownFiled(

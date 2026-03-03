@@ -12,7 +12,7 @@ class ForgotPasswordScreenBody extends StatelessWidget {
     required this.isLoading,
     required this.emailController,
   });
-  
+
   final bool isLoading;
   final TextEditingController emailController;
 
@@ -40,10 +40,7 @@ class ForgotPasswordScreenBody extends StatelessWidget {
             hintText: 'البريد الالكتروني',
           ),
           SizedBox(height: 40.h),
-          SendOtpButton(
-            emailController: emailController,
-            isLoading: isLoading,
-          ),
+          SendOtpButton(emailController: emailController, isLoading: isLoading),
         ],
       ),
     );

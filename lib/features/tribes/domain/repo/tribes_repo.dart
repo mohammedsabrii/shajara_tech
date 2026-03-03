@@ -4,6 +4,8 @@ import 'package:shajara_tech/features/tribes/domain/entitys/tribes_details_entit
 import 'package:shajara_tech/features/tribes/domain/entitys/tribes_entity.dart';
 
 abstract class TribesRepo {
-  Future<Either<Failure,List<TribesEntity>>> getTribes();
-  Future<Either<Failure,TribesDetailsEntity>> getTribeDetails({required int tribeId});
+  Future<Either<Failure, List<TribesEntity>>> getTribes();
+  Future<Either<Failure, TribesDetailsEntity>> getTribeDetails({
+    required int tribeId,
+  });
 }

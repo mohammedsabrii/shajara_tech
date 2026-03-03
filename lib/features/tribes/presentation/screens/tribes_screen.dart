@@ -14,7 +14,7 @@ class TribesScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => sl<GetTribesCubit>()..getTribes(),
       child: const Scaffold(
-        bottomNavigationBar: CustomBottomNavBar(),
+        bottomNavigationBar: SafeArea(child: CustomBottomNavBar()),
         backgroundColor: AppColors.kbackGroundColor,
         body: SafeArea(child: TribesScreenBody()),
       ),

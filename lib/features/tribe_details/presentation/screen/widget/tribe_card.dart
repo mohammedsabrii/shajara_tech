@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:shajara_tech/core/routes/app_router.dart';
 import 'package:shajara_tech/core/utils/app_colors.dart';
 import 'package:shajara_tech/core/utils/app_icons.dart';
-import 'package:shajara_tech/core/utils/app_images.dart';
 import 'package:shajara_tech/features/tribe_details/presentation/screen/widget/action_button.dart';
 import 'package:shajara_tech/features/tribes/domain/entitys/tribes_details_entity.dart';
 
@@ -23,8 +22,8 @@ class TribeCard extends StatelessWidget {
               height: 180.h,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12.r),
-                image: const DecorationImage(
-                  image: AssetImage(AppImages.kTestImage4),
+                image: DecorationImage(
+                  image: NetworkImage(tribesDetailsEntity.tribeLogoImage),
                   fit: BoxFit.fill,
                 ),
               ),
@@ -41,7 +40,10 @@ class TribeCard extends StatelessWidget {
                   border: Border.all(color: Colors.white, width: 3),
                 ),
                 child: ClipOval(
-                  child: Image.asset(AppImages.kTestImage3, fit: BoxFit.fill),
+                  child: Image.network(
+                    tribesDetailsEntity.tribeLogoImage,
+                    fit: BoxFit.fill,
+                  ),
                 ),
               ),
             ),

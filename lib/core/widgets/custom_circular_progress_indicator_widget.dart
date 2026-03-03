@@ -11,5 +11,3 @@ class CustomCircularProgressIndicatorWidget extends StatelessWidget {
     );
   }
 }
-
-

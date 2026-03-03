@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shajara_tech/core/utils/app_colors.dart';
+import 'package:shajara_tech/core/utils/app_text_styles.dart';
 import 'package:shajara_tech/core/widgets/custom_app_bar.dart';
 import 'package:shajara_tech/core/widgets/custom_text_field.dart';
 import 'package:shajara_tech/features/edit_password/presentation/screen/widget/edit_passwprd_button.dart';
@@ -13,14 +15,12 @@ class EditPasswordScreenBody extends StatefulWidget {
 }
 
 class _EditPasswordScreenBodyState extends State<EditPasswordScreenBody> {
-  final _oldPasswordController = TextEditingController();
   final _newPasswordController = TextEditingController();
   final _confirmNewPasswordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
-    _oldPasswordController.dispose();
     _newPasswordController.dispose();
     _confirmNewPasswordController.dispose();
     super.dispose();
@@ -34,6 +34,7 @@ class _EditPasswordScreenBodyState extends State<EditPasswordScreenBody> {
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 24.w),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 16.h),
               CustomAppBar(
@@ -41,15 +42,11 @@ class _EditPasswordScreenBodyState extends State<EditPasswordScreenBody> {
                 onBackTap: () => GoRouter.of(context).pop(),
               ),
               SizedBox(height: 32.h),
-              CustomTextField(
-                controller: _oldPasswordController,
-                hintText: 'كلمة المرور القديمة',
-                showEyeIcon: true,
-                obscureText: true,
-                validator: (value) {
-                  if (value?.isEmpty ?? true) return "حقل مطلوب";
-                  return null;
-                },
+              Text(
+                'كلمة المرور يجب أن تكون 8 أحرف على الأقل',
+                style: AppTextStyles.styleAlmaraiRegular14(
+                  context,
+                ).copyWith(color: AppColors.kTitleColor),
               ),
               SizedBox(height: 16.h),
               CustomTextField(
@@ -82,7 +79,6 @@ class _EditPasswordScreenBodyState extends State<EditPasswordScreenBody> {
               SizedBox(height: 40.h),
               EditPasswprdButton(
                 formKey: _formKey,
-                oldPasswordController: _oldPasswordController,
                 newPasswordController: _newPasswordController,
                 confirmNewPasswordController: _confirmNewPasswordController,
               ),

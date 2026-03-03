@@ -11,16 +11,13 @@ class EditPasswprdButton extends StatefulWidget {
   const EditPasswprdButton({
     super.key,
     required GlobalKey<FormState> formKey,
-    required TextEditingController oldPasswordController,
     required TextEditingController newPasswordController,
     required TextEditingController confirmNewPasswordController,
   }) : _formKey = formKey,
-       _oldPasswordController = oldPasswordController,
        _newPasswordController = newPasswordController,
        _confirmNewPasswordController = confirmNewPasswordController;
 
   final GlobalKey<FormState> _formKey;
-  final TextEditingController _oldPasswordController;
   final TextEditingController _newPasswordController;
   final TextEditingController _confirmNewPasswordController;
 
@@ -35,21 +32,26 @@ class _EditPasswprdButtonState extends State<EditPasswprdButton> {
     return BlocListener<EditPasswordCubit, EditPasswordState>(
       listener: (context, state) {
         if (state is EditPasswordSuccess) {
-          isLoading = false;
+          setState(() {
+            isLoading = false;
+          });
           GoRouter.of(context).go(AppRouter.kLogInScreen);
           customShowSnackBar(context, title: 'تم تغيير كلمة السر بنجاح');
         } else if (state is EditPasswordFailure) {
-          isLoading = false;
+          setState(() {
+            isLoading = false;
+          });
           customShowSnackBar(context, title: state.errorMessage);
         } else if (state is EditPasswordLoading) {
-          isLoading = true;
+          setState(() {
+            isLoading = true;
+          });
         }
       },
       child: CustomButton(
         onTap: () {
           if (widget._formKey.currentState!.validate()) {
             context.read<EditPasswordCubit>().editPassword(
-              oldPassword: widget._oldPasswordController.text.trim(),
               newPassword: widget._newPasswordController.text.trim(),
               confirmNewPassword: widget._confirmNewPasswordController.text
                   .trim(),

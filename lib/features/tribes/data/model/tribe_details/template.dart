@@ -22,7 +22,7 @@ class Template extends TemplateEntity {
   }) : super(
          templateId: id,
          templateDescription: description ?? '',
-         templateImageUrl: imageUrl ?? '',
+         templateImageUrl: imageUrl ?? 'https://picsum.photos/200/140',
          templateName: name ?? '',
        );
 

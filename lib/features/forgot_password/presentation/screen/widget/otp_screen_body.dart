@@ -15,19 +15,18 @@ class OtpScreenBody extends StatefulWidget {
   const OtpScreenBody({
     super.key,
     required this.email,
-    required this.isLoading, required this.otpKey,
+    required this.isLoading,
+    required this.otpKey,
   });
-  
+
   final String email;
   final bool isLoading;
-final GlobalKey<OtpFieldsState> otpKey;
+  final GlobalKey<OtpFieldsState> otpKey;
   @override
   State<OtpScreenBody> createState() => _OtpScreenBodyState();
 }
 
 class _OtpScreenBodyState extends State<OtpScreenBody> {
- 
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -45,8 +44,8 @@ class _OtpScreenBodyState extends State<OtpScreenBody> {
           CustomButton(
             onTap: () {
               final otpCode = widget.otpKey.currentState?.getOtpCode() ?? '';
-              
-              if (otpCode.length == 4) { 
+
+              if (otpCode.length == 4) {
                 context.read<CheckResetCodeCubit>().verifyOtp(
                   email: widget.email,
                   otpCode: otpCode,
@@ -62,8 +61,9 @@ class _OtpScreenBodyState extends State<OtpScreenBody> {
                 ? const CircularProgressIndicator(color: Colors.white)
                 : Text(
                     'أستمرار',
-                    style: AppTextStyles.styleAlmaraiExtraBold14(context)
-                        .copyWith(color: Colors.white),
+                    style: AppTextStyles.styleAlmaraiExtraBold14(
+                      context,
+                    ).copyWith(color: Colors.white),
                   ),
           ),
           SizedBox(height: 20.h),

@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:shajara_tech/features/auth/presentation/screen/login_otp_screen.dart';
 import 'package:shajara_tech/features/tribe_details/presentation/screen/tribe_details_screen.dart';
 import 'package:shajara_tech/features/NewsDetails/news_details.dart';
 import 'package:shajara_tech/features/aboutUs/about_us.dart';
@@ -25,6 +26,7 @@ import 'package:shajara_tech/features/splash/presentation/screen/splash_screen.d
 class AppRouter {
   static const kSplashScreen = '/';
   static const kLogInScreen = '/LoginScreen';
+  static const kLogInOtpScreen = '/LoginOtpScreen';
   static const kSignUpScreen = '/SignUpScreen';
   static const kForgotPasswordScreen = '/ForgotPasswordScreen';
   static const kOtpScreen = '/OtpScreen';
@@ -52,6 +54,13 @@ class AppRouter {
       GoRoute(
         path: kLogInScreen,
         builder: (context, state) => const LoginScreen(),
+      ),
+      GoRoute(
+        path: kLogInOtpScreen,
+        builder: (context, state) {
+          final email = state.extra as String;
+          return LoginOtpScreen(email: email);
+        },
       ),
       GoRoute(
         path: kSignUpScreen,

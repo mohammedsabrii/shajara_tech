@@ -11,9 +11,9 @@ class ChatUserItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 15.h),
-      decoration: const BoxDecoration( 
+      decoration: const BoxDecoration(
         color: AppColors.kPrimaryColor,
-        borderRadius: BorderRadius.only( 
+        borderRadius: BorderRadius.only(
           topLeft: Radius.circular(25),
           bottomRight: Radius.circular(25),
           bottomLeft: Radius.circular(25),
@@ -21,8 +21,9 @@ class ChatUserItem extends StatelessWidget {
       ),
       child: Text(
         message,
-        style: AppTextStyles.styleAlmaraiBold13(context)
-            .copyWith(color: Colors.white),
+        style: AppTextStyles.styleAlmaraiBold13(
+          context,
+        ).copyWith(color: Colors.white),
       ),
     );
   }
@@ -36,7 +37,7 @@ class ChatFriendItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 15.h),
-      decoration: const BoxDecoration( 
+      decoration: const BoxDecoration(
         color: AppColors.kPlatinum,
         borderRadius: BorderRadius.only(
           topRight: Radius.circular(25),
@@ -46,8 +47,9 @@ class ChatFriendItem extends StatelessWidget {
       ),
       child: Text(
         message,
-        style: AppTextStyles.styleAlmaraiBold13(context)
-            .copyWith(color: AppColors.kSpanishGray),
+        style: AppTextStyles.styleAlmaraiBold13(
+          context,
+        ).copyWith(color: AppColors.kSpanishGray),
       ),
     );
   }

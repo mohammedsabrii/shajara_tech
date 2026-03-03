@@ -31,6 +31,7 @@ class ChatScreenBody extends StatelessWidget {
           ),
           SizedBox(height: 20.h),
           ChatMessagesBlocBuilder(myId: myId),
+          SizedBox(height: 10.h),
           SendMessageBlocListener(tribesDetailsEntity: tribesDetailsEntity),
           SizedBox(height: 28.h),
         ],
@@ -38,4 +39,3 @@ class ChatScreenBody extends StatelessWidget {
     );
   }
 }
-

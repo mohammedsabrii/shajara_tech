@@ -8,9 +8,10 @@ class HomeOccasionSectionItem extends StatelessWidget {
   const HomeOccasionSectionItem({
     super.key,
     required this.date,
-    required this.newsTitle,
+    required this.occasionTitle,
+    required this.image,
   });
-  final String newsTitle, date;
+  final String occasionTitle, date, image;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,8 +24,8 @@ class HomeOccasionSectionItem extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(8),
             child: Image.network(
-              'https://picsum.photos/200/140',
-              height: 132.h,
+              image,
+              height: 128.h,
               width: 156.w,
               fit: BoxFit.cover,
               errorBuilder: (context, error, stackTrace) => Container(
@@ -48,13 +49,13 @@ class HomeOccasionSectionItem extends StatelessWidget {
           ),
           const SizedBox(height: 1),
           Text(
-            newsTitle,
+            occasionTitle,
             maxLines: 2,
             textAlign: TextAlign.start,
             overflow: TextOverflow.ellipsis,
             style: AppTextStyles.styleAlmaraiRegular10(context),
           ),
-          const SizedBox(height: 6),
+          // const SizedBox(height: 6),
         ],
       ),
     );

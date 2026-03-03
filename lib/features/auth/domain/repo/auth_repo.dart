@@ -10,9 +10,14 @@ abstract class AuthRepo {
     required String password,
     required String confirmPassword,
   });
-  Future<Either<Failure, LoginEntity>> login({
+  Future<Either<Failure, Unit>> login({
     required String email,
     required String password,
+  });
+  Future<Either<Failure, Unit>> reSendLoginOtpCode({required String email});
+  Future<Either<Failure, LoginEntity>> checkLoginOtpCode({
+    required String email,
+    required String code,
   });
   Future<Either<Failure, Unit>> logout();
 }

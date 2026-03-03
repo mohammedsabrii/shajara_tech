@@ -7,7 +7,7 @@ abstract class EditProfileRepo {
   Future<Either<Failure, Unit>> editProfileInfo({
     required String userName,
     required String userJop,
-    required DateTime dateOfBirth,
+    required String dateOfBirth,
     required String userLifeStatus,
     required String userPhoneNumper,
   });

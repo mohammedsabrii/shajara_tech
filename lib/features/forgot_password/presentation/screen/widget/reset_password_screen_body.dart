@@ -15,7 +15,7 @@ class ResetPasswordScreenBody extends StatefulWidget {
     required this.email,
     required this.otpCode,
   });
-  
+
   final bool isLoading;
   final String email, otpCode;
 
@@ -83,20 +83,21 @@ class _ResetPasswordScreenBodyState extends State<ResetPasswordScreenBody> {
                 onTap: () {
                   if (_formKey.currentState!.validate()) {
                     context.read<ResetPasswordCubit>().resetPassword(
-                          otpCode: widget.otpCode,
-                          confirmNewPassword:
-                              _confirmNewPasswordController.text.trim(),
-                          newPassword: _newPasswordController.text.trim(),
-                          email: widget.email,
-                        );
+                      otpCode: widget.otpCode,
+                      confirmNewPassword: _confirmNewPasswordController.text
+                          .trim(),
+                      newPassword: _newPasswordController.text.trim(),
+                      email: widget.email,
+                    );
                   }
                 },
                 titleWidget: widget.isLoading
                     ? const CircularProgressIndicator(color: Colors.white)
                     : Text(
                         'حفظ التغييرات',
-                        style: AppTextStyles.styleAlmaraiExtraBold14(context)
-                            .copyWith(color: Colors.white),
+                        style: AppTextStyles.styleAlmaraiExtraBold14(
+                          context,
+                        ).copyWith(color: Colors.white),
                       ),
               ),
             ],

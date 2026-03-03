@@ -7,7 +7,7 @@ class GetTribesUseCase {
   final TribesRepo tribesRepo;
 
   GetTribesUseCase({required this.tribesRepo});
-  Future<Either<Failure,List<TribesEntity>>> call() {
+  Future<Either<Failure, List<TribesEntity>>> call() {
     return tribesRepo.getTribes();
   }
 }

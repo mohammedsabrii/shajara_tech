@@ -15,7 +15,7 @@ class NewsScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => sl<GetNewsCubit>()..getNews(),
       child: const Scaffold(
-        bottomNavigationBar: CustomBottomNavBar(),
+        bottomNavigationBar: SafeArea(child: CustomBottomNavBar()),
         backgroundColor: AppColors.kbackGroundColor,
         body: SafeArea(child: NewsBody()),
       ),

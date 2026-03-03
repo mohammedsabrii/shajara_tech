@@ -41,7 +41,7 @@ class HomeNewsBlocBuilder extends StatelessWidget {
         if (state is GetNewsSuccess) {
           return Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-            child: NewsSectionWithItems(newsEntity: state.newsEntity),
+            child: HomeNewsSectionWithItems(newsEntity: state.newsEntity),
           );
         } else if (state is GetNewsFailure) {
           return CustomErrorWidget(errorMessage: state.errorMessage);

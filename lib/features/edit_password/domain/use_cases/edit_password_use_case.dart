@@ -7,12 +7,10 @@ class EditPasswordUseCase {
 
   EditPasswordUseCase({required this.editPasswordRepo});
   Future<Either<Failure, Unit>> call({
-    required String oldPassword,
     required String newPassword,
     required String confirmNewPassword,
   }) {
     return editPasswordRepo.editPassword(
-      oldPassword: oldPassword,
       newPassword: newPassword,
       confirmNewPassword: confirmNewPassword,
     );

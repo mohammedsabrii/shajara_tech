@@ -9,21 +9,21 @@ import 'package:shajara_tech/features/forgot_password/presentation/screen/widget
 
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({super.key});
-  
+
   @override
   State<ForgotPasswordScreen> createState() => _ForgotPasswordScreenState();
 }
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   bool isLoading = false;
-  final emailController = TextEditingController(); 
-  
+  final emailController = TextEditingController();
+
   @override
   void dispose() {
     emailController.dispose();
     super.dispose();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,25 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shajara_tech/core/utils/app_icons.dart';
 import 'package:shajara_tech/core/utils/app_text_styles.dart';
 
 class SectionItem extends StatelessWidget {
-  const SectionItem({super.key});
-
+  const SectionItem({
+    super.key,
+    required this.title,
+    required this.date,
+    required this.imageUrl,
+  });
+  final String title;
+  final String date;
+  final String imageUrl;
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 200,
+      width: 200.w,
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // الصورة
           ClipRRect(
             borderRadius: BorderRadius.circular(8),
             child: Image.network(
-              'https://picsum.photos/200/140',
-              height: 132,
+              imageUrl,
+              height: 132.h,
               width: 156,
               fit: BoxFit.cover,
               errorBuilder: (context, error, stackTrace) => Container(
@@ -35,25 +42,23 @@ class SectionItem extends StatelessWidget {
           const SizedBox(height: 3),
 
           Row(
-            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Text(
-                'الجمعة 17 مايو , 2025 ',
-                style: AppTextStyles.styleAlmaraiRegular10(context),
-              ),
-              const SizedBox(width: 5),
               SvgPicture.asset(AppIcons.kLetsIconsDate),
+              const SizedBox(width: 5),
+              Text(date, style: AppTextStyles.styleAlmaraiRegular10(context)),
             ],
           ),
           const SizedBox(height: 1),
 
-          // العنوان
-          Text(
-            'اللقاء العائلي لبني خالد العنصر',
-            textAlign: TextAlign.right,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            style: AppTextStyles.styleAlmaraiRegular10(context),
+          SizedBox(
+            width: 147.w,
+            child: Text(
+              title,
+              textAlign: TextAlign.right,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: AppTextStyles.styleAlmaraiRegular10(context),
+            ),
           ),
           const SizedBox(height: 6),
         ],

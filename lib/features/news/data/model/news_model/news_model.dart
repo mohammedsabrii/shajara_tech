@@ -1,8 +1,7 @@
-
-import 'datum.dart';
+import 'data.dart';
 import 'link.dart';
 
-class NewsModel  {
+class NewsModel {
   int? currentPage;
   List<NewsData>? data;
   String? firstPageUrl;

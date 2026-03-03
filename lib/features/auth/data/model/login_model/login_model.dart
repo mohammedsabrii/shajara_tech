@@ -1,49 +1,38 @@
 import 'package:shajara_tech/features/auth/domain/entity/login_entity.dart';
 
-import 'user.dart';
-
 class LoginModel extends LoginEntity {
-  String? message;
-  String? token;
-  String? tokenType;
-  int? userId;
-  User? user;
-  String? role;
-  bool? hasTreeData;
+  final String? message;
+  final String? tokenType;
+  final String? role;
+  final bool? hasTreeData;
 
   LoginModel({
     this.message,
-    this.token,
+    required String token,
     this.tokenType,
-    this.userId,
-    this.user,
+    required int userId,
+    required super.userName,
+    required super.userEmail,
     this.role,
     this.hasTreeData,
-  }) : super(
-         userEmail: user?.email ?? '',
-         userName: user?.name ?? '',
-         userToken: token ?? '',
-       );
+  }) : super(userToken: token, id: userId);
 
-  factory LoginModel.fromJson(Map<String, dynamic> json) => LoginModel(
-    message: json['message'] as String?,
-    token: json['token'] as String?,
-    tokenType: json['token_type'] as String?,
-    userId: json['user_id'] as int?,
-    user: json['user'] == null
-        ? null
-        : User.fromJson(json['user'] as Map<String, dynamic>),
-    role: json['role'] as String?,
-    hasTreeData: json['hasTreeData'] as bool?,
-  );
+  factory LoginModel.fromJson(Map<String, dynamic> json) {
+    final userJson = json['user'];
 
-  Map<String, dynamic> toJson() => {
-    'message': message,
-    'token': token,
-    'token_type': tokenType,
-    'user_id': userId,
-    'user': user?.toJson(),
-    'role': role,
-    'hasTreeData': hasTreeData,
-  };
+    if (userJson == null || userJson is! Map<String, dynamic>) {
+      throw Exception("User data is missing in login response");
+    }
+
+    return LoginModel(
+      message: json['message'],
+      token: json['token'] ?? '',
+      tokenType: json['token_type'],
+      userId: json['user_id'] ?? 0,
+      userName: userJson['name'] ?? '',
+      userEmail: userJson['email'] ?? '',
+      role: json['role'],
+      hasTreeData: json['hasTreeData'],
+    );
+  }
 }

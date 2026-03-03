@@ -8,6 +8,8 @@ class TribesData extends TribesEntity {
   String? treeName;
   dynamic coverImage;
   dynamic logoImage;
+  dynamic coverImageUrl;
+  dynamic logoImageUrl;
   int? templateId;
   int? userId;
   DateTime? createdAt;
@@ -19,6 +21,8 @@ class TribesData extends TribesEntity {
     this.treeName,
     this.coverImage,
     this.logoImage,
+    this.coverImageUrl,
+    this.logoImageUrl,
     this.templateId,
     this.userId,
     this.createdAt,
@@ -26,7 +30,7 @@ class TribesData extends TribesEntity {
     this.user,
   }) : super(
          tribeName: treeName ?? '',
-         tribeCoverImage: coverImage ?? '',
+         tribeCoverImage: coverImageUrl ?? 'https://picsum.photos/200/140',
          tribeId: id,
        );
 
@@ -35,6 +39,8 @@ class TribesData extends TribesEntity {
     treeName: json['tree_name'] as String?,
     coverImage: json['cover_image'] as dynamic,
     logoImage: json['logo_image'] as dynamic,
+    coverImageUrl: json['cover_image_url'] as dynamic,
+    logoImageUrl: json['logo_image_url'] as dynamic,
     templateId: json['template_id'] as int?,
     userId: json['user_id'] as int?,
     createdAt: json['created_at'] == null

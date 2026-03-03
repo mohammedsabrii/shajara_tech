@@ -10,7 +10,7 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       backgroundColor: AppColors.kbackGroundColor,
-      bottomNavigationBar: CustomBottomNavBar(),
+      bottomNavigationBar: SafeArea(child: CustomBottomNavBar()),
       body: SafeArea(child: ProfileScreenBody()),
     );
   }

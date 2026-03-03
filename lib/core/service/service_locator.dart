@@ -6,11 +6,15 @@ import 'package:shajara_tech/features/auth/data/data_sources/auth_remote_data_so
 import 'package:shajara_tech/features/auth/data/repo/auth_interceptor.dart';
 import 'package:shajara_tech/features/auth/data/repo/auth_repo_impl.dart';
 import 'package:shajara_tech/features/auth/domain/repo/auth_repo.dart';
+import 'package:shajara_tech/features/auth/domain/use_cases/check_reset_otp_code_use_case.dart';
 import 'package:shajara_tech/features/auth/domain/use_cases/log_out_use_case.dart';
 import 'package:shajara_tech/features/auth/domain/use_cases/login_use_case.dart';
+import 'package:shajara_tech/features/auth/domain/use_cases/re_send_otp_code.dart';
 import 'package:shajara_tech/features/auth/domain/use_cases/sign_up_use_case.dart';
+import 'package:shajara_tech/features/auth/presentation/manager/Cubits/check_reset_otp_code_cubit/check_login_otp_code_cubit.dart';
 import 'package:shajara_tech/features/auth/presentation/manager/Cubits/login_cubit/login_cubit.dart';
 import 'package:shajara_tech/features/auth/presentation/manager/Cubits/logout_cubit/logout_cubit.dart';
+import 'package:shajara_tech/features/auth/presentation/manager/Cubits/re_send_login_otp_code_cubit/re_send_login_otp_code_cubit.dart';
 import 'package:shajara_tech/features/auth/presentation/manager/Cubits/sign_up_cubit/sign_up_cubit.dart';
 import 'package:shajara_tech/features/chat/data/data_source/chat_remote_data_source.dart';
 import 'package:shajara_tech/features/chat/data/repo/chat_repo_impl.dart';
@@ -51,6 +55,13 @@ import 'package:shajara_tech/features/news/data/repo/news_repo_impl.dart';
 import 'package:shajara_tech/features/news/domain/repo/news_repo.dart';
 import 'package:shajara_tech/features/news/domain/use_cases/get_news_use_case.dart';
 import 'package:shajara_tech/features/news/presentation/manager/cubit/cubit/get_news_cubit.dart';
+import 'package:shajara_tech/features/profile/data/data_source/delete_account_data_source.dart';
+import 'package:shajara_tech/features/profile/data/repo/delete_account_repo_impl.dart';
+import 'package:shajara_tech/features/profile/domain/repo/delete_account_repo.dart';
+import 'package:shajara_tech/features/profile/domain/use_case/confirm_password_to_delete_account_use_case.dart';
+import 'package:shajara_tech/features/profile/domain/use_case/delete_account_use_case.dart';
+import 'package:shajara_tech/features/profile/presentation/manager/cubit/confirm_password_to_delete_account_cubit/confirm_password_to_delete_account_cubit.dart';
+import 'package:shajara_tech/features/profile/presentation/manager/cubit/delete_account_cubit/delete_account_cubit.dart';
 import 'package:shajara_tech/features/tribes/data/data_source/tribes_remote_data_source.dart';
 import 'package:shajara_tech/features/tribes/data/repo/tribes_repo_impl.dart';
 import 'package:shajara_tech/features/tribes/domain/repo/tribes_repo.dart';
@@ -89,6 +100,7 @@ Future<void> initServiceLocator() async {
   _initOccasions();
   _initNews();
   _initJoinUs();
+  _initDeleteAccount();
 }
 
 void _initCore() {
@@ -128,11 +140,23 @@ void _initAuth() {
   sl.registerLazySingleton(() => LoginUseCase(authRepo: sl<AuthRepo>()));
   sl.registerLazySingleton(() => SignUpUseCase(authRepo: sl<AuthRepo>()));
   sl.registerLazySingleton(() => LogOutUseCase(authRepo: sl<AuthRepo>()));
+  sl.registerLazySingleton(
+    () => CheckLoginOtpCodeUseCase(authRepo: sl<AuthRepo>()),
+  );
+  sl.registerLazySingleton(
+    () => ReSendLoginOtpCodeUseCase(authRepo: sl<AuthRepo>()),
+  );
 
   //cubit//
   sl.registerFactory(() => LoginCubit(sl<LoginUseCase>()));
   sl.registerFactory(() => SignUpCubit(sl<SignUpUseCase>()));
   sl.registerFactory(() => LogoutCubit(sl<LogOutUseCase>()));
+  sl.registerFactory(
+    () => CheckLoginOtpCodeCubit(sl<CheckLoginOtpCodeUseCase>()),
+  );
+  sl.registerFactory(
+    () => ReSendLoginOtpCodeCubit(sl<ReSendLoginOtpCodeUseCase>()),
+  );
 }
 
 void _initContactUs() {
@@ -162,6 +186,7 @@ void _initEditProfile() {
   //repo//
   sl.registerLazySingleton<EditProfileRepo>(
     () => EditProfileRepoImpl(
+      authLocalDataSource: sl<AuthLocalDataSource>(),
       editProfileRemoteDataSource: sl<EditProfileRemoteDataSource>(),
     ),
   );
@@ -339,11 +364,43 @@ void _initJoinUs() {
   );
   //repo//
   sl.registerLazySingleton<JoinUsRepo>(
-    () => JoinUsRepoImpl(joinUsRemoteDataSource: sl<JoinUsRemoteDataSource>()),
+    () => JoinUsRepoImpl(
+      joinUsRemoteDataSource: sl<JoinUsRemoteDataSource>(),
+      authLocalDataSource: sl<AuthLocalDataSource>(),
+    ),
   );
   //use cases//
   sl.registerLazySingleton(() => JoinUsUseCase(joinUsRepo: sl<JoinUsRepo>()));
 
   //cubit//
   sl.registerFactory(() => JoinUsCubit(sl<JoinUsUseCase>()));
+}
+
+void _initDeleteAccount() {
+  //dataSource//
+  sl.registerLazySingleton<DeleteAccountRemoteDataSource>(
+    () => DeleteAccountRemoteDataSourceImpl(apiService: sl<ApiService>()),
+  );
+  //repo//
+  sl.registerLazySingleton<DeleteAccountRepo>(
+    () => DeleteAccountRepoImpl(
+      deleteAccountDataSource: sl<DeleteAccountRemoteDataSource>(),
+    ),
+  );
+  //use cases//
+  sl.registerLazySingleton(
+    () => DeleteAccountUseCase(deleteAccountRepo: sl<DeleteAccountRepo>()),
+  );
+  sl.registerLazySingleton(
+    () => ConfirmPasswordToDeleteAccountUseCase(
+      deleteAccountRepo: sl<DeleteAccountRepo>(),
+    ),
+  );
+  //cubit//
+  sl.registerFactory(() => DeleteAccountCubit(sl<DeleteAccountUseCase>()));
+  sl.registerFactory(
+    () => ConfirmPasswordToDeleteAccountCubit(
+      sl<ConfirmPasswordToDeleteAccountUseCase>(),
+    ),
+  );
 }

@@ -3,8 +3,8 @@ import 'package:shajara_tech/core/utils/app_colors.dart';
 import 'package:shajara_tech/core/utils/app_text_styles.dart';
 
 class DidNotReceiveCode extends StatelessWidget {
-  const DidNotReceiveCode({super.key});
-
+  const DidNotReceiveCode({super.key, this.onTap});
+  final VoidCallback? onTap;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -18,7 +18,7 @@ class DidNotReceiveCode extends StatelessWidget {
         ),
         const SizedBox(width: 3),
         GestureDetector(
-          onTap: () {},
+          onTap: onTap,
           child: Text(
             ' إعادة الإرسال',
             style: AppTextStyles.styleAlmaraiRegular10(

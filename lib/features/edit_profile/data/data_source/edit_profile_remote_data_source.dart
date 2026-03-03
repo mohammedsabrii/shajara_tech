@@ -2,13 +2,14 @@ import 'package:shajara_tech/core/service/api_service.dart';
 import 'package:shajara_tech/features/edit_profile/data/model/profile_info/profile_info.dart';
 
 abstract class EditProfileRemoteDataSource {
-  Future<ProfileInfo> getProfileInfo();
+  Future<ProfileInfo> getProfileInfo({required int userId});
   Future<void> editProfileInfo({
     required String userName,
     required String userJop,
-    required DateTime dateOfBirth,
+    required String dateOfBirth,
     required String userLifeStatus,
     required String userPhoneNumper,
+    required int userId,
   });
 }
 
@@ -20,12 +21,13 @@ class EditProfileRemoteDataSourceImpl implements EditProfileRemoteDataSource {
   Future<void> editProfileInfo({
     required String userName,
     required String userJop,
-    required DateTime dateOfBirth,
+    required String dateOfBirth,
     required String userLifeStatus,
     required String userPhoneNumper,
+    required int userId,
   }) async {
     await apiService.put(
-      endPoint: 'profile?',
+      endPoint: 'user-profiles/$userId',
       data: {
         "name": userName,
         "phone": userPhoneNumper,
@@ -36,8 +38,8 @@ class EditProfileRemoteDataSourceImpl implements EditProfileRemoteDataSource {
   }
 
   @override
-  Future<ProfileInfo> getProfileInfo() async {
-    final data = await apiService.get(endPoint: 'user-profiles/1');
+  Future<ProfileInfo> getProfileInfo({required int userId}) async {
+    final data = await apiService.get(endPoint: 'user-profiles/$userId');
     return ProfileInfo.fromJson(data);
   }
 }

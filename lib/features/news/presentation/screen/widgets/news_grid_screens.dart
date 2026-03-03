@@ -26,4 +26,3 @@ class NewsGridSection extends StatelessWidget {
     );
   }
 }
-

@@ -24,7 +24,7 @@ class NewsSectionItem extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: Image.network(
-                'https://picsum.photos/200/140',
+                newsEntity.newsImage,
                 height: 132.h,
                 width: 156.w,
                 fit: BoxFit.cover,

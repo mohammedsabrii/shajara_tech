@@ -36,14 +36,14 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  Future<Either<Failure, LoginEntity>> login({
+  Future<Either<Failure, Unit>> login({
     required String email,
     required String password,
   }) async {
     try {
-      final user = await remoteDataSource.login(email, password);
-      await localDataSource.saveToken(user.userToken);
-      return Right(user);
+      await remoteDataSource.login(email, password);
+
+      return const Right(unit);
     } catch (e) {
       if (e is DioException) {
         return Left(ServerFailure.fromDiorError(e));
@@ -64,6 +64,44 @@ class AuthRepoImpl implements AuthRepo {
       } else {
         return left(ServerFailure(e.toString()));
       }
+    }
+  }
+
+  @override
+  Future<Either<Failure, LoginEntity>> checkLoginOtpCode({
+    required String email,
+    required String code,
+  }) async {
+    try {
+      final user = await remoteDataSource.checkResetOtpCode(
+        email: email,
+        code: code,
+      );
+      await localDataSource.saveToken(user.userToken);
+      await localDataSource.saveUserId(user.id);
+      print('user token: ${user.userToken}');
+      print('user id: ${user.id}');
+      return Right(user);
+    } catch (e) {
+      if (e is DioException) {
+        return Left(ServerFailure.fromDiorError(e));
+      }
+      return Left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, Unit>> reSendLoginOtpCode({
+    required String email,
+  }) async {
+    try {
+      await remoteDataSource.reSendOtpCode(email: email);
+      return right(unit);
+    } catch (e) {
+      if (e is DioException) {
+        return Left(ServerFailure.fromDiorError(e));
+      }
+      return Left(ServerFailure(e.toString()));
     }
   }
 }

@@ -8,12 +8,12 @@ class SignUpUseCase {
 
   SignUpUseCase({required this.authRepo});
 
-  Future<Either<Failure, SignUpEntity>> call(
- {  required String name,
-   required String email,
-   required String password,
-   required String confirmPassword,}
-  ) {
+  Future<Either<Failure, SignUpEntity>> call({
+    required String name,
+    required String email,
+    required String password,
+    required String confirmPassword,
+  }) {
     return authRepo.signUp(
       name: name,
       email: email,

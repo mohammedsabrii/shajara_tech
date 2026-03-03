@@ -9,10 +9,10 @@ class CustomDropDownFiled extends StatefulWidget {
   const CustomDropDownFiled({
     super.key,
     required this.hint,
-    this.controller, 
-    this.onChanged, 
+    this.controller,
+    this.onChanged,
   });
-  
+
   final String hint;
   final TextEditingController? controller;
   final Function(String)? onChanged;
@@ -27,9 +27,9 @@ class _CustomDropDownFiledState extends State<CustomDropDownFiled> {
   String _getEmotionalState(EmotionalState gender) {
     switch (gender) {
       case EmotionalState.single:
-        return 'اعزب';
+        return 'single';
       case EmotionalState.married:
-        return 'مُتزوج';
+        return 'married';
     }
   }
 
@@ -53,8 +53,9 @@ class _CustomDropDownFiledState extends State<CustomDropDownFiled> {
               alignment: Alignment.centerRight,
               child: Text(
                 widget.hint,
-                style: AppTextStyles.styleAlmaraiRegular10(context)
-                    .copyWith(color: AppColors.kGraniteGray),
+                style: AppTextStyles.styleAlmaraiRegular10(
+                  context,
+                ).copyWith(color: AppColors.kGraniteGray),
               ),
             ),
             isExpanded: true,
@@ -64,8 +65,9 @@ class _CustomDropDownFiledState extends State<CustomDropDownFiled> {
               color: Colors.grey,
             ),
             elevation: 0,
-            style: AppTextStyles.styleAlmaraiRegular12(context)
-                .copyWith(color: AppColors.kGraniteGray),
+            style: AppTextStyles.styleAlmaraiRegular12(
+              context,
+            ).copyWith(color: AppColors.kGraniteGray),
             dropdownColor: Colors.white,
             menuMaxHeight: 200,
             alignment: AlignmentDirectional.bottomStart,
@@ -79,7 +81,7 @@ class _CustomDropDownFiledState extends State<CustomDropDownFiled> {
               setState(() {
                 selectedGender = value;
               });
-              
+
               if (value != null) {
                 final stateText = _getEmotionalState(value);
                 widget.controller?.text = stateText;

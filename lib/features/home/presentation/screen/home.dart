@@ -20,7 +20,7 @@ class HomeeScreen extends StatelessWidget {
         BlocProvider(create: (context) => sl<GetNewsCubit>()..getNews()),
       ],
       child: const Scaffold(
-        bottomNavigationBar: CustomBottomNavBar(),
+        bottomNavigationBar: SafeArea(child: CustomBottomNavBar()),
         backgroundColor: AppColors.kbackGroundColor,
 
         body: SafeArea(child: HomeBody()),

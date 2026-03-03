@@ -32,12 +32,24 @@ class _LogInButtonState extends State<LogInButton> {
     return BlocListener<LoginCubit, LoginState>(
       listener: (context, state) {
         if (state is LoginSuccess) {
-          isLoading = false;
-          GoRouter.of(context).go(AppRouter.kHomeScreen);
+          setState(() {
+            isLoading = false;
+          });
+
+          GoRouter.of(context).go(
+            AppRouter.kLogInOtpScreen,
+            extra: widget._emailController.text.trim(),
+          );
         } else if (state is LoginLoading) {
-          isLoading = true;
+          setState(() {
+            isLoading = true;
+          });
         } else if (state is LoginFailure) {
-          isLoading = false;
+          setState(() {
+            isLoading = false;
+          });
+
+          print('Login failed: ${state.errorMessage}');
           customShowSnackBar(context, title: state.errorMessage);
         }
       },

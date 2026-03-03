@@ -5,8 +5,8 @@ import 'package:shajara_tech/core/utils/app_text_styles.dart';
 import 'package:shajara_tech/features/home/presentation/screen/widgets/news_section_item.dart';
 import 'package:shajara_tech/features/news/domain/entity/news_entity.dart';
 
-class NewsSectionWithItems extends StatelessWidget {
-  const NewsSectionWithItems({super.key, required this.newsEntity});
+class HomeNewsSectionWithItems extends StatelessWidget {
+  const HomeNewsSectionWithItems({super.key, required this.newsEntity});
   final List<NewsEntity> newsEntity;
   @override
   Widget build(BuildContext context) {
@@ -37,6 +37,7 @@ class NewsSectionWithItems extends StatelessWidget {
             itemCount: newsEntity.length,
             itemBuilder: (context, index) => Expanded(
               child: HomeNewsSectionItem(
+                imageUrl: newsEntity[index].newsImage,
                 newsTitle: newsEntity[index].newsTitle,
                 date: newsEntity[index].newsDate,
               ),

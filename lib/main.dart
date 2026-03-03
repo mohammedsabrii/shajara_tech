@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shajara_tech/core/routes/app_router.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shajara_tech/core/service/service_locator.dart';
+import 'package:shajara_tech/features/auth/presentation/manager/Cubits/check_reset_otp_code_cubit/check_login_otp_code_cubit.dart';
+import 'package:shajara_tech/features/auth/presentation/manager/Cubits/re_send_login_otp_code_cubit/re_send_login_otp_code_cubit.dart';
 import 'package:shajara_tech/features/forgot_password/presentation/manager/Cubits/check_reset_code_cubit/check_reset_code_cubit.dart';
 import 'package:shajara_tech/features/forgot_password/presentation/manager/Cubits/reset_password_cubit/reset_password_cubit.dart';
 import 'package:shajara_tech/features/forgot_password/presentation/manager/Cubits/send_otp_code_cubit/send_otp_code_cubit.dart';
@@ -27,6 +29,8 @@ class ShajaraTech extends StatelessWidget {
           BlocProvider(create: (context) => sl<CheckResetCodeCubit>()),
           BlocProvider(create: (context) => sl<ResetPasswordCubit>()),
           BlocProvider(create: (context) => sl<SendOtpCodeCubit>()),
+          BlocProvider(create: (context) => sl<CheckLoginOtpCodeCubit>()),
+          BlocProvider(create: (context) => sl<ReSendLoginOtpCodeCubit>()),
         ],
         child: MaterialApp.router(
           debugShowCheckedModeBanner: false,

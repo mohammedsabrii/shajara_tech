@@ -1,5 +1,5 @@
 import 'package:shajara_tech/core/service/api_service.dart';
-import 'package:shajara_tech/features/news/data/model/news_model/datum.dart';
+import 'package:shajara_tech/features/news/data/model/news_model/data.dart';
 
 abstract class NewsRemoteDataSource {
   Future<List<NewsData>> getNews();

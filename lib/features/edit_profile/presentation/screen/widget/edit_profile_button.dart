@@ -63,7 +63,7 @@ class _EditProfileButtonState extends State<EditProfileButton> {
                   final dateOfBirth =
                       widget.editDateOfBirthController.text.isEmpty
                       ? widget.originalProfileInfo.dateOfBirth
-                      : DateTime.parse(widget.editDateOfBirthController.text);
+                      : widget.editDateOfBirthController.text.trim();
 
                   final userLifeStatus =
                       widget.editUserLifeStatusController.text.trim().isEmpty

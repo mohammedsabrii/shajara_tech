@@ -12,7 +12,7 @@ class User {
   dynamic job;
   String? status;
   String? membershipType;
-  dynamic birthDate;
+  String? birthDate;
   dynamic socialStatus;
   String? lifeStatus;
   dynamic emailVerifiedAt;
@@ -55,7 +55,7 @@ class User {
     job: json['job'] as dynamic,
     status: json['status'] as String?,
     membershipType: json['membership_type'] as String?,
-    birthDate: json['birth_date'] as dynamic,
+    birthDate: json['birth_date'] as String,
     socialStatus: json['social_status'] as dynamic,
     lifeStatus: json['life_status'] as String?,
     emailVerifiedAt: json['email_verified_at'] as dynamic,

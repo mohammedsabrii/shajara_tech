@@ -7,10 +7,12 @@ class Data {
   int? templateId;
   String? treeName;
   dynamic coverImage;
-  dynamic logoImage;
+  String? logoImage;
   int? isDefault;
   DateTime? createdAt;
   DateTime? updatedAt;
+  dynamic coverImageUrl;
+  String? logoImageUrl;
   Template? template;
   User? user;
 
@@ -24,6 +26,8 @@ class Data {
     this.isDefault,
     this.createdAt,
     this.updatedAt,
+    this.coverImageUrl,
+    this.logoImageUrl,
     this.template,
     this.user,
   });
@@ -34,7 +38,7 @@ class Data {
     templateId: json['template_id'] as int?,
     treeName: json['tree_name'] as String?,
     coverImage: json['cover_image'] as dynamic,
-    logoImage: json['logo_image'] as dynamic,
+    logoImage: json['logo_image'] as String?,
     isDefault: json['is_default'] as int?,
     createdAt: json['created_at'] == null
         ? null
@@ -42,6 +46,8 @@ class Data {
     updatedAt: json['updated_at'] == null
         ? null
         : DateTime.parse(json['updated_at'] as String),
+    coverImageUrl: json['cover_image_url'] as dynamic,
+    logoImageUrl: json['logo_image_url'] as String?,
     template: json['template'] == null
         ? null
         : Template.fromJson(json['template'] as Map<String, dynamic>),
@@ -60,6 +66,8 @@ class Data {
     'is_default': isDefault,
     'created_at': createdAt?.toIso8601String(),
     'updated_at': updatedAt?.toIso8601String(),
+    'cover_image_url': coverImageUrl,
+    'logo_image_url': logoImageUrl,
     'template': template?.toJson(),
     'user': user?.toJson(),
   };

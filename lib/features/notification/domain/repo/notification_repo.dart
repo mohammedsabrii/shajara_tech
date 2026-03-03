@@ -5,5 +5,4 @@ import 'package:shajara_tech/features/notification/domain/entity/get_notificatio
 abstract class NotificationRepo {
   Future<Either<Failure, List<GetNotificationEntity>>> getAllNotification();
   Future<Either<Failure, Unit>> markAllNotificationAsRead();
-
 }

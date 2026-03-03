@@ -3,7 +3,7 @@ class ProfileInfoEntity {
   final dynamic userProfilePicture;
   final String userName;
   final String userJop;
-  final DateTime dateOfBirth;
+  final String dateOfBirth;
   final String userLifeStatus;
   final String userPhoneNumper;
 

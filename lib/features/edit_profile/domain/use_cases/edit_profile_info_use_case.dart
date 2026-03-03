@@ -9,7 +9,7 @@ class EditProfileInfoUseCase {
   Future<Either<Failure, Unit>> call({
     required String userName,
     required String userJop,
-    required DateTime dateOfBirth,
+    required String dateOfBirth,
     required String userLifeStatus,
     required String userPhoneNumper,
   }) {

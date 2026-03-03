@@ -41,4 +41,3 @@ class NotificationScreenBody extends StatelessWidget {
     );
   }
 }
-

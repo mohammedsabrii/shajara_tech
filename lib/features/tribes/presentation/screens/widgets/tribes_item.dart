@@ -23,7 +23,7 @@ class TribeItem extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: Image.network(
-                'https://picsum.photos/200/140',
+                tribesEntity.tribeCoverImage ?? 'https://picsum.photos/200/140',
                 height: 132.h,
                 width: 156.w,
                 fit: BoxFit.cover,

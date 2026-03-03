@@ -35,7 +35,11 @@ class OccasionData extends OccasionEntity {
     this.longitude,
     this.city,
     this.familyTree,
-  }) : super(occasionTime: occasionDate ?? '', occasionTitle: name ?? '');
+  }) : super(
+         occasionTime: occasionDate ?? '',
+         occasionTitle: name ?? '',
+         imageUrl: coverImage ?? 'https://picsum.photos/200/140',
+       );
 
   factory OccasionData.fromJson(Map<String, dynamic> json) => OccasionData(
     id: json['id'] as int?,

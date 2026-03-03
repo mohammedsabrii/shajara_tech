@@ -9,10 +9,12 @@ class OccasionRemoteDataSourceImpl implements OccasionRemoteDataSource {
   final ApiService apiService;
 
   OccasionRemoteDataSourceImpl({required this.apiService});
- @override
-Future<List<OccasionData>> getOccasion() async {
-  final response = await apiService.get(endPoint: 'tribes/occasions?per_page=15');
-  final data = response['data'] as List;
-  return data.map((occasion) => OccasionData.fromJson(occasion)).toList();
-}
+  @override
+  Future<List<OccasionData>> getOccasion() async {
+    final response = await apiService.get(
+      endPoint: 'tribes/occasions?per_page=15',
+    );
+    final data = response['data'] as List;
+    return data.map((occasion) => OccasionData.fromJson(occasion)).toList();
+  }
 }

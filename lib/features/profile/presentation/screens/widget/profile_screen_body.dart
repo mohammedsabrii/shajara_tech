@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:shajara_tech/core/routes/app_router.dart';
 import 'package:shajara_tech/core/utils/app_icons.dart';
 import 'package:shajara_tech/core/widgets/custom_app_bar.dart';
-import 'package:shajara_tech/features/profile/presentation/screens/widget/delete_dialog_details.dart';
 import 'package:shajara_tech/features/profile/presentation/screens/widget/profile_item.dart';
 import 'package:shajara_tech/features/profile/presentation/screens/widget/profile_picture.dart';
 
@@ -48,18 +47,13 @@ class ProfileScreenBody extends StatelessWidget {
             ),
             SizedBox(height: 20.h),
             ProfileItem(
-              onTap: () => GoRouter.of(context).push(AppRouter.kJoinUsScreen),
+              onTap: () {},
               title: 'الانضمام الينا',
               icon: AppIcons.kJoinUsIcon,
             ),
             SizedBox(height: 20.h),
             ProfileItem(
-              onTap: () {
-                showDialog(
-                  context: context,
-                  builder: (context) => const DeleteDialogDetails(),
-                );
-              },
+              onTap: () {},
               title: 'حذف الحساب',
               icon: AppIcons.kDeleteAccountIcon,
             ),

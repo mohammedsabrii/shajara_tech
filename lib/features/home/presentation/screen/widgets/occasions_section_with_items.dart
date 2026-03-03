@@ -37,7 +37,8 @@ class OccasionsSectionWithItems extends StatelessWidget {
             itemCount: occasionEntity.length,
             itemBuilder: (context, index) => Expanded(
               child: HomeOccasionSectionItem(
-                newsTitle: occasionEntity[index].occasionTitle,
+                image: occasionEntity[index].imageUrl,
+                occasionTitle: occasionEntity[index].occasionTitle,
                 date: occasionEntity[index].occasionTime,
               ),
             ),

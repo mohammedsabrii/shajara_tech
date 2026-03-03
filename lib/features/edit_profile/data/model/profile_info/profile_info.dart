@@ -10,7 +10,7 @@ class ProfileInfo extends ProfileInfoEntity {
     : super(
         userProfilePicture: user?.profilePicture ?? 'null',
         userName: user?.name ?? 'UnKnown',
-        dateOfBirth: user?.birthDate ?? DateTime.now(),
+        dateOfBirth: user?.birthDate ?? 'UnKnown',
         userJop: user?.job ?? '',
         userLifeStatus: user?.lifeStatus ?? '',
         userPhoneNumper: user?.phone ?? '',

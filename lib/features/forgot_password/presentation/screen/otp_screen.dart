@@ -10,7 +10,7 @@ import 'package:shajara_tech/features/forgot_password/presentation/screen/widget
 
 class OtpScreen extends StatefulWidget {
   const OtpScreen({super.key, required this.email});
-  
+
   final String email;
 
   @override
@@ -19,7 +19,7 @@ class OtpScreen extends StatefulWidget {
 
 class _OtpScreenState extends State<OtpScreen> {
   bool isLoading = false;
-  final GlobalKey<OtpFieldsState> otpKey = GlobalKey<OtpFieldsState>(); 
+  final GlobalKey<OtpFieldsState> otpKey = GlobalKey<OtpFieldsState>();
 
   @override
   Widget build(BuildContext context) {
@@ -37,22 +37,19 @@ class _OtpScreenState extends State<OtpScreen> {
                 customShowSnackBar(context, title: state.errorMessage);
               } else if (state is CheckResetCodeSuccess) {
                 setState(() => isLoading = false);
-                
+
                 final otpCode = otpKey.currentState?.getOtpCode() ?? '';
-                
+
                 GoRouter.of(context).push(
                   AppRouter.kResetPasswordScreen,
-                  extra: {
-                    'email': widget.email,
-                    'otpCode': otpCode,
-                  },
+                  extra: {'email': widget.email, 'otpCode': otpCode},
                 );
               }
             },
             child: OtpScreenBody(
               email: widget.email,
               isLoading: isLoading,
-              otpKey: otpKey, 
+              otpKey: otpKey,
             ),
           ),
         ),

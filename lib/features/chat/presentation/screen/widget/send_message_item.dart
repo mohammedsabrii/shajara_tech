@@ -57,4 +57,3 @@ class SendMessageItem extends StatelessWidget {
     );
   }
 }
-

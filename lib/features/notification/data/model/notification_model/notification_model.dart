@@ -24,10 +24,10 @@ class NotificationModel extends GetNotificationEntity {
     this.readAt,
     this.createdAt,
   }) : super(
-          notificationMessage: message ?? body ?? content ?? '',
-          notificationTitle: title ?? subject ?? '',
-          notificationTime: createdAt ?? DateTime.now(),
-        );
+         notificationMessage: message ?? body ?? content ?? '',
+         notificationTitle: title ?? subject ?? '',
+         notificationTime: createdAt ?? DateTime.now(),
+       );
 
   factory NotificationModel.fromJson(Map<String, dynamic> json) {
     return NotificationModel(
@@ -47,16 +47,15 @@ class NotificationModel extends GetNotificationEntity {
   }
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'title': title,
-        'message': message,
-        'body': body,
-        'content': content,
-        'subject': subject,
-        'type': type,
-        'icon': icon,
-        'read_at': readAt,
-        'created_at': createdAt?.toIso8601String(),
-      };
-
+    'id': id,
+    'title': title,
+    'message': message,
+    'body': body,
+    'content': content,
+    'subject': subject,
+    'type': type,
+    'icon': icon,
+    'read_at': readAt,
+    'created_at': createdAt?.toIso8601String(),
+  };
 }
