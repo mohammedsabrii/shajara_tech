@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:shajara_tech/features/auth/presentation/screen/login_otp_screen.dart';
+import 'package:shajara_tech/features/profile/presentation/screens/delete_account_screen.dart';
 import 'package:shajara_tech/features/tribe_details/presentation/screen/tribe_details_screen.dart';
 import 'package:shajara_tech/features/NewsDetails/news_details.dart';
 import 'package:shajara_tech/features/aboutUs/about_us.dart';
@@ -45,6 +46,7 @@ class AppRouter {
   static const kNotificationScreen = '/NotificationScreen';
   static const kContactUsScreen = '/ContactUsScreen';
   static const kJoinUsScreen = '/JoinUsScreen';
+  static const kDeleteAccountScreen = '/DeleteAccountScreen';
   static final router = GoRouter(
     routes: [
       GoRoute(
@@ -146,6 +148,10 @@ class AppRouter {
         builder: (context, state) => JoinUsScreen(
           tribesDetailsEntity: state.extra as TribesDetailsEntity,
         ),
+      ),
+      GoRoute(
+        path: kDeleteAccountScreen,
+        builder: (context, state) => const DeleteAccountScreen(),
       ),
     ],
   );

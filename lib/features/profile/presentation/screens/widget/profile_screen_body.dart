@@ -53,7 +53,8 @@ class ProfileScreenBody extends StatelessWidget {
             ),
             SizedBox(height: 20.h),
             ProfileItem(
-              onTap: () {},
+              onTap: () =>
+                  GoRouter.of(context).push(AppRouter.kContactUsScreen),
               title: 'حذف الحساب',
               icon: AppIcons.kDeleteAccountIcon,
             ),
