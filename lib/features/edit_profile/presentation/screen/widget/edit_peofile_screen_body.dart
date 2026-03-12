@@ -1,6 +1,8 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:shajara_tech/core/widgets/custom_app_bar.dart';
 import 'package:shajara_tech/core/widgets/custom_date_picker_field.dart';
@@ -25,6 +27,8 @@ class _EditProfileScreenBodyState extends State<EditProfileScreenBody> {
   final _editUserLifeStatusController = TextEditingController();
   final _editUserPhoneNumperController = TextEditingController();
 
+  File? _selectedImage;
+
   @override
   void dispose() {
     _editUserNameController.dispose();
@@ -33,6 +37,16 @@ class _EditProfileScreenBodyState extends State<EditProfileScreenBody> {
     _editUserLifeStatusController.dispose();
     _editUserPhoneNumperController.dispose();
     super.dispose();
+  }
+
+  Future<void> _pickAndUploadImage(BuildContext context) async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() {
+        _selectedImage = File(pickedFile.path);
+      });
+    }
   }
 
   @override
@@ -48,7 +62,11 @@ class _EditProfileScreenBodyState extends State<EditProfileScreenBody> {
               onBackTap: () => GoRouter.of(context).pop(),
             ),
             SizedBox(height: 16.h),
-            const EditProfilePicture(),
+            EditProfilePicture(
+              profileInfoEntity: widget.profileInfoEntity,
+              selectedImage: _selectedImage,
+              onTap: () => _pickAndUploadImage(context),
+            ),
             SizedBox(height: 32.h),
             CustomTextField(
               controller: _editUserNameController,
@@ -85,6 +103,7 @@ class _EditProfileScreenBodyState extends State<EditProfileScreenBody> {
               editUserLifeStatusController: _editUserLifeStatusController,
               editUserPhoneNumperController: _editUserPhoneNumperController,
               originalProfileInfo: widget.profileInfoEntity,
+              image: _selectedImage,
             ),
           ],
         ),

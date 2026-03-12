@@ -8,7 +8,7 @@ class ProfileInfo extends ProfileInfoEntity {
 
   ProfileInfo({this.message, this.user})
     : super(
-        userProfilePicture: user?.profilePicture ?? 'null',
+        userProfilePicture: user?.profilePictureUrl ?? 'null',
         userName: user?.name ?? 'UnKnown',
         dateOfBirth: user?.birthDate ?? 'UnKnown',
         userJop: user?.job ?? '',

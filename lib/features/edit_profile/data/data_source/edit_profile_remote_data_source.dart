@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:dio/dio.dart';
 import 'package:shajara_tech/core/service/api_service.dart';
 import 'package:shajara_tech/features/edit_profile/data/model/profile_info/profile_info.dart';
 
@@ -11,6 +14,7 @@ abstract class EditProfileRemoteDataSource {
     required String userPhoneNumper,
     required int userId,
   });
+  Future<void> updateProfilePicture(File image);
 }
 
 class EditProfileRemoteDataSourceImpl implements EditProfileRemoteDataSource {
@@ -41,5 +45,21 @@ class EditProfileRemoteDataSourceImpl implements EditProfileRemoteDataSource {
   Future<ProfileInfo> getProfileInfo({required int userId}) async {
     final data = await apiService.get(endPoint: 'user-profiles/$userId');
     return ProfileInfo.fromJson(data);
+  }
+
+  @override
+  Future<void> updateProfilePicture(File image) async {
+    FormData formData = FormData.fromMap({
+      'profile_picture': await MultipartFile.fromFile(
+        image.path,
+        filename: image.path.split('/').last,
+      ),
+    });
+
+    await apiService.post(
+      endPoint: 'account/profile-picture',
+      data: formData,
+      isMultipart: true,
+    );
   }
 }

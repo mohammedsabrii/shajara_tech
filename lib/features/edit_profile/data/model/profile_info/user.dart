@@ -20,6 +20,7 @@ class User {
   DateTime? updatedAt;
   dynamic customDomain;
   PageRole? pageRole;
+  String? profilePictureUrl;
 
   User({
     required this.id,
@@ -41,6 +42,7 @@ class User {
     this.updatedAt,
     this.customDomain,
     this.pageRole,
+    this.profilePictureUrl,
   });
 
   factory User.fromJson(Map<String, dynamic> json) => User(
@@ -66,6 +68,7 @@ class User {
         ? null
         : DateTime.parse(json['updated_at'] as String),
     customDomain: json['custom_domain'] as dynamic,
+    profilePictureUrl: json['profile_picture_url'] as String?,
     pageRole: json['page_role'] == null
         ? null
         : PageRole.fromJson(json['page_role'] as Map<String, dynamic>),
@@ -91,5 +94,6 @@ class User {
     'updated_at': updatedAt?.toIso8601String(),
     'custom_domain': customDomain,
     'page_role': pageRole?.toJson(),
+    'profile_picture_url': profilePictureUrl,
   };
 }

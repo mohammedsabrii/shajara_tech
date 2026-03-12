@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:shajara_tech/core/routes/app_router.dart';
 import 'package:shajara_tech/core/utils/app_colors.dart';
 import 'package:shajara_tech/core/utils/app_text_styles.dart';
 import 'package:shajara_tech/features/home/domain/entity/occasion_entity.dart';
@@ -36,10 +38,16 @@ class OccasionsSectionWithItems extends StatelessWidget {
             padding: EdgeInsets.only(left: 14.w),
             itemCount: occasionEntity.length,
             itemBuilder: (context, index) => Expanded(
-              child: HomeOccasionSectionItem(
-                image: occasionEntity[index].imageUrl,
-                occasionTitle: occasionEntity[index].occasionTitle,
-                date: occasionEntity[index].occasionTime,
+              child: GestureDetector(
+                onTap: () => GoRouter.of(context).push(
+                  AppRouter.kOccasionDetailsScreen,
+                  extra: occasionEntity[index],
+                ),
+                child: HomeOccasionSectionItem(
+                  image: occasionEntity[index].imageUrl,
+                  occasionTitle: occasionEntity[index].occasionTitle,
+                  date: occasionEntity[index].occasionTime,
+                ),
               ),
             ),
           ),

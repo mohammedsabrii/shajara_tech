@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dartz/dartz.dart';
 import 'package:shajara_tech/core/errors/failure.dart';
 import 'package:shajara_tech/features/edit_profile/domain/entity/profile_info_entity.dart';
@@ -11,4 +13,5 @@ abstract class EditProfileRepo {
     required String userLifeStatus,
     required String userPhoneNumper,
   });
+  Future<Either<Failure, Unit>> updateProfilePicture(File image);
 }

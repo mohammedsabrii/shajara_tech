@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shajara_tech/core/utils/app_images.dart';
+import 'package:shajara_tech/features/NewsDetails/domain/entity/news_details_entity.dart';
 
 class NewsDetailsHeaderImage extends StatelessWidget {
-  const NewsDetailsHeaderImage({super.key});
-
+  const NewsDetailsHeaderImage({super.key, required this.newsDetailsEntity});
+  final NewsDetailsEntity newsDetailsEntity;
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -12,8 +12,8 @@ class NewsDetailsHeaderImage extends StatelessWidget {
         height: 191.h,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8.r),
-          image: const DecorationImage(
-            image: AssetImage(AppImages.kTestImage1),
+          image: DecorationImage(
+            image: NetworkImage(newsDetailsEntity.newsImage),
             fit: BoxFit.fill,
           ),
         ),

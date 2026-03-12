@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:shajara_tech/core/routes/app_router.dart';
 import 'package:shajara_tech/core/utils/app_colors.dart';
 import 'package:shajara_tech/core/utils/app_text_styles.dart';
 import 'package:shajara_tech/features/home/presentation/screen/widgets/news_section_item.dart';
@@ -36,10 +38,15 @@ class HomeNewsSectionWithItems extends StatelessWidget {
             padding: EdgeInsets.only(left: 14.w),
             itemCount: newsEntity.length,
             itemBuilder: (context, index) => Expanded(
-              child: HomeNewsSectionItem(
-                imageUrl: newsEntity[index].newsImage,
-                newsTitle: newsEntity[index].newsTitle,
-                date: newsEntity[index].newsDate,
+              child: GestureDetector(
+                onTap: () => GoRouter.of(
+                  context,
+                ).push(AppRouter.kNewsDetailsScreen, extra: newsEntity[index]),
+                child: HomeNewsSectionItem(
+                  imageUrl: newsEntity[index].newsImage,
+                  newsTitle: newsEntity[index].newsTitle,
+                  date: newsEntity[index].newsDate,
+                ),
               ),
             ),
           ),

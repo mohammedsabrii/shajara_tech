@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -7,6 +9,7 @@ import 'package:shajara_tech/core/widgets/custom_circular_progress_indicator_wid
 import 'package:shajara_tech/core/widgets/custom_show_snackbar.dart';
 import 'package:shajara_tech/features/edit_profile/domain/entity/profile_info_entity.dart';
 import 'package:shajara_tech/features/edit_profile/presentation/manager/cubit/edit_profile_info_cubit/edit_profile_info_cubit.dart';
+import 'package:shajara_tech/features/edit_profile/presentation/manager/cubit/edit_profile_picture_cubit/edit_profile_picture_cubit.dart';
 
 class EditProfileButton extends StatefulWidget {
   const EditProfileButton({
@@ -18,6 +21,7 @@ class EditProfileButton extends StatefulWidget {
     required this.editDateOfBirthController,
     required this.editUserLifeStatusController,
     required this.editUserPhoneNumperController,
+    this.image,
   });
 
   final TextEditingController editUserNameController;
@@ -26,7 +30,7 @@ class EditProfileButton extends StatefulWidget {
   final TextEditingController editUserLifeStatusController;
   final TextEditingController editUserPhoneNumperController;
   final ProfileInfoEntity originalProfileInfo;
-
+  final File? image;
   @override
   State<EditProfileButton> createState() => _EditProfileButtonState();
 }
@@ -82,6 +86,11 @@ class _EditProfileButtonState extends State<EditProfileButton> {
                     userLifeStatus: userLifeStatus,
                     userPhoneNumper: userPhoneNumper,
                   );
+                  if (widget.image != null) {
+                    context
+                        .read<EditProfilePictureCubit>()
+                        .updateProfilePicture(image: widget.image!);
+                  }
                 },
           titleWidget: isLoading
               ? const CustomCircularProgressIndicatorWidget(color: Colors.white)

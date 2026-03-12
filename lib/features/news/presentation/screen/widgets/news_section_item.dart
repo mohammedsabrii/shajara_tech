@@ -14,7 +14,9 @@ class NewsSectionItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => GoRouter.of(context).push(AppRouter.kNewsDetailsScreen),
+      onTap: () => GoRouter.of(
+        context,
+      ).push(AppRouter.kNewsDetailsScreen, extra: newsEntity),
       child: Container(
         width: 156.w,
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),

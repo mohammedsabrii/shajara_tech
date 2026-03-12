@@ -18,6 +18,7 @@ class OccasionData extends OccasionEntity {
   String? longitude;
   String? city;
   FamilyTree? familyTree;
+  String? coverImageUrl;
 
   OccasionData({
     this.id,
@@ -35,10 +36,12 @@ class OccasionData extends OccasionEntity {
     this.longitude,
     this.city,
     this.familyTree,
+    this.coverImageUrl,
   }) : super(
          occasionTime: occasionDate ?? '',
          occasionTitle: name ?? '',
-         imageUrl: coverImage ?? 'https://picsum.photos/200/140',
+         imageUrl: coverImageUrl ?? 'https://picsum.photos/200/140',
+         occasionId: id ?? 0,
        );
 
   factory OccasionData.fromJson(Map<String, dynamic> json) => OccasionData(
@@ -59,6 +62,8 @@ class OccasionData extends OccasionEntity {
     category: json['category'] as String?,
     latitude: json['latitude'] as String?,
     longitude: json['longitude'] as String?,
+    coverImageUrl: json['cover_image_url'] as String?,
+
     city: json['city'] as String?,
     familyTree: json['family_tree'] == null
         ? null

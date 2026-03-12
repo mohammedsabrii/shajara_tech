@@ -1,8 +1,11 @@
 import 'package:go_router/go_router.dart';
 import 'package:shajara_tech/features/auth/presentation/screen/login_otp_screen.dart';
+import 'package:shajara_tech/features/home/domain/entity/occasion_entity.dart';
+import 'package:shajara_tech/features/news/domain/entity/news_entity.dart';
+import 'package:shajara_tech/features/occasion_details/presentation/view/occasion_details.dart';
 import 'package:shajara_tech/features/profile/presentation/screens/delete_account_screen.dart';
 import 'package:shajara_tech/features/tribe_details/presentation/screen/tribe_details_screen.dart';
-import 'package:shajara_tech/features/NewsDetails/news_details.dart';
+import 'package:shajara_tech/features/NewsDetails/presentation/view/news_details.dart';
 import 'package:shajara_tech/features/aboutUs/about_us.dart';
 import 'package:shajara_tech/features/auth/presentation/screen/login_screen.dart';
 import 'package:shajara_tech/features/auth/presentation/screen/sign_up_screen.dart';
@@ -47,6 +50,7 @@ class AppRouter {
   static const kContactUsScreen = '/ContactUsScreen';
   static const kJoinUsScreen = '/JoinUsScreen';
   static const kDeleteAccountScreen = '/DeleteAccountScreen';
+  static const kOccasionDetailsScreen = '/OccasionDetailsScreen';
   static final router = GoRouter(
     routes: [
       GoRoute(
@@ -99,7 +103,14 @@ class AppRouter {
       ),
       GoRoute(
         path: kNewsDetailsScreen,
-        builder: (context, state) => const NewsDetailsScreen(),
+        builder: (context, state) =>
+            NewsDetailsScreen(newsEntity: state.extra as NewsEntity),
+      ),
+      GoRoute(
+        path: kOccasionDetailsScreen,
+        builder: (context, state) => OccasionDetailsScreen(
+          occasionEntity: state.extra as OccasionEntity,
+        ),
       ),
       GoRoute(
         path: kAboutUsScreen,

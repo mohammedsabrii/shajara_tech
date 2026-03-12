@@ -26,6 +26,7 @@ class DeleteDialogDetails extends StatelessWidget {
         }
       },
       builder: (context, state) {
+        final isLoading = state is DeleteAccountLoading;
         return SimpleDialog(
           contentPadding: EdgeInsets.symmetric(
             vertical: 34.h,
@@ -54,12 +55,18 @@ class DeleteDialogDetails extends StatelessWidget {
                       },
                       borderColor: AppColors.kRedColor,
                       color: AppColors.kRedColor,
-                      title: Text(
-                        'حذف',
-                        style: AppTextStyles.styleAlmaraiRegular16(
-                          context,
-                        ).copyWith(color: Colors.white),
-                      ),
+                      title: isLoading
+                          ? const Center(
+                              child: CircularProgressIndicator(
+                                color: Colors.white,
+                              ),
+                            )
+                          : Text(
+                              'حذف',
+                              style: AppTextStyles.styleAlmaraiRegular16(
+                                context,
+                              ).copyWith(color: Colors.white),
+                            ),
                     ),
                     SizedBox(width: 18.w),
                     DeleteDialogActionItem(

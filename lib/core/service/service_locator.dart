@@ -1,6 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shajara_tech/core/service/api_service.dart';
+import 'package:shajara_tech/features/NewsDetails/data/data_source/news_details_remote_data_source.dart';
+import 'package:shajara_tech/features/NewsDetails/data/repo/news_details_repo.dart';
+import 'package:shajara_tech/features/NewsDetails/domain/repo/news_details_repo.dart';
+import 'package:shajara_tech/features/NewsDetails/domain/use_case/get_news_details_use_case.dart';
+import 'package:shajara_tech/features/NewsDetails/presentation/manager/cubit/cubit/news_details_cubit.dart';
 import 'package:shajara_tech/features/auth/data/data_sources/auth_local_data_source.dart';
 import 'package:shajara_tech/features/auth/data/data_sources/auth_remote_data_source.dart';
 import 'package:shajara_tech/features/auth/data/repo/auth_interceptor.dart';
@@ -38,7 +43,9 @@ import 'package:shajara_tech/features/edit_profile/data/repo/edit_profile_repo_i
 import 'package:shajara_tech/features/edit_profile/domain/repo/edit_profile_repo.dart';
 import 'package:shajara_tech/features/edit_profile/domain/use_cases/edit_profile_info_use_case.dart';
 import 'package:shajara_tech/features/edit_profile/domain/use_cases/get_profile_info_use_case.dart';
+import 'package:shajara_tech/features/edit_profile/domain/use_cases/update_profile_picture_use_case.dart';
 import 'package:shajara_tech/features/edit_profile/presentation/manager/cubit/edit_profile_info_cubit/edit_profile_info_cubit.dart';
+import 'package:shajara_tech/features/edit_profile/presentation/manager/cubit/edit_profile_picture_cubit/edit_profile_picture_cubit.dart';
 import 'package:shajara_tech/features/edit_profile/presentation/manager/cubit/get_profile_info_cubit/get_profile_info_cubit.dart';
 import 'package:shajara_tech/features/home/data/data_source/occasion_remote_data_source.dart';
 import 'package:shajara_tech/features/home/data/repo/occasion_repo_impl.dart';
@@ -55,6 +62,11 @@ import 'package:shajara_tech/features/news/data/repo/news_repo_impl.dart';
 import 'package:shajara_tech/features/news/domain/repo/news_repo.dart';
 import 'package:shajara_tech/features/news/domain/use_cases/get_news_use_case.dart';
 import 'package:shajara_tech/features/news/presentation/manager/cubit/cubit/get_news_cubit.dart';
+import 'package:shajara_tech/features/occasion_details/data/data_source/occasion_details_remote_data_source.dart';
+import 'package:shajara_tech/features/occasion_details/data/repo/occasion_details_repo.dart';
+import 'package:shajara_tech/features/occasion_details/domain/repo/occasion_details_repo.dart';
+import 'package:shajara_tech/features/occasion_details/domain/use_case/get_occasion_details_use_case.dart';
+import 'package:shajara_tech/features/occasion_details/presentation/manager/cubit/get_occasion_cubit/occasion_details_cubit.dart';
 import 'package:shajara_tech/features/profile/data/data_source/delete_account_data_source.dart';
 import 'package:shajara_tech/features/profile/data/repo/delete_account_repo_impl.dart';
 import 'package:shajara_tech/features/profile/domain/repo/delete_account_repo.dart';
@@ -101,6 +113,8 @@ Future<void> initServiceLocator() async {
   _initNews();
   _initJoinUs();
   _initDeleteAccount();
+  _initNewsDetails();
+  _initOccasionDetails();
 }
 
 void _initCore() {
@@ -197,9 +211,15 @@ void _initEditProfile() {
   sl.registerLazySingleton(
     () => GetProfileInfoUseCase(editProfileRepo: sl<EditProfileRepo>()),
   );
+  sl.registerLazySingleton(
+    () => UpdateProfilePictureUseCase(sl<EditProfileRepo>()),
+  );
   //cubit//
   sl.registerFactory(() => EditProfileInfoCubit(sl<EditProfileInfoUseCase>()));
   sl.registerFactory(() => GetProfileInfoCubit(sl<GetProfileInfoUseCase>()));
+  sl.registerFactory(
+    () => EditProfilePictureCubit(sl<UpdateProfilePictureUseCase>()),
+  );
 }
 
 void _initEditPassword() {
@@ -402,5 +422,49 @@ void _initDeleteAccount() {
     () => ConfirmPasswordToDeleteAccountCubit(
       sl<ConfirmPasswordToDeleteAccountUseCase>(),
     ),
+  );
+}
+
+void _initNewsDetails() {
+  //dataSource//
+  sl.registerLazySingleton<NewsDetailsRemoteDataSource>(
+    () => NewsDetailsRemoteDataSourceImpl(apiService: sl<ApiService>()),
+  );
+  //repo//
+  sl.registerLazySingleton<NewsDetailsRepo>(
+    () => NewsDetailsRepoImpl(
+      newsDetailsRemoteDataSource: sl<NewsDetailsRemoteDataSource>(),
+    ),
+  );
+  //use cases//
+  sl.registerLazySingleton(
+    () => GetNewsDetailsUseCase(newsDetailsRepo: sl<NewsDetailsRepo>()),
+  );
+
+  //cubit//
+  sl.registerFactory(() => GetNewsDetailsCubit(sl<GetNewsDetailsUseCase>()));
+}
+
+void _initOccasionDetails() {
+  //dataSource//
+  sl.registerLazySingleton<OccasionDetailsRemoteDataSource>(
+    () => OccasionDetailsRemoteDataSourceImpl(apiService: sl<ApiService>()),
+  );
+  //repo//
+  sl.registerLazySingleton<OccasionDetailsRepo>(
+    () => OccasionDetailsRepoImpl(
+      occasionDetailsRemoteDataSource: sl<OccasionDetailsRemoteDataSource>(),
+    ),
+  );
+  //use cases//
+  sl.registerLazySingleton(
+    () => GetOccasionDetailsUseCase(
+      occasionDetailsRepo: sl<OccasionDetailsRepo>(),
+    ),
+  );
+
+  //cubit//
+  sl.registerFactory(
+    () => GetOccasionDetailsCubit(sl<GetOccasionDetailsUseCase>()),
   );
 }

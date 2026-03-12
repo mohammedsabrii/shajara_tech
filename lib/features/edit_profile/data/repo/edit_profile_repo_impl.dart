@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:shajara_tech/core/errors/failure.dart';
@@ -53,6 +55,19 @@ class EditProfileRepoImpl implements EditProfileRepo {
       );
 
       return Right(data);
+    } catch (e) {
+      if (e is DioException) {
+        return Left(ServerFailure.fromDiorError(e));
+      }
+      return Left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, Unit>> updateProfilePicture(File image) async {
+    try {
+      await editProfileRemoteDataSource.updateProfilePicture(image);
+      return const Right(unit);
     } catch (e) {
       if (e is DioException) {
         return Left(ServerFailure.fromDiorError(e));

@@ -36,6 +36,7 @@ class NewsData extends NewsEntity {
     this.coverImageUrl,
     this.familyTree,
   }) : super(
+         newsId: id ?? 0,
          newsDate: createdAt ?? DateTime.now(),
          newsTitle: shortDescription ?? '',
          newsImage: imageUrl ?? 'https://picsum.photos/200/140',
