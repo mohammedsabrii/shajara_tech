@@ -36,7 +36,7 @@ class _OtpScreenBodyState extends State<OtpScreenBody> {
         children: [
           SizedBox(height: 20.h),
           const ForgotPasswordAppBar(),
-          const OtpScreenHeader(),
+          OtpScreenHeader(email: widget.email.toString()),
           SizedBox(height: 28.h),
           OtpFields(key: widget.otpKey),
           const Center(child: OtpTimer()),

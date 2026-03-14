@@ -32,50 +32,52 @@ class _LogInOtpScreenDetailsState extends State<LogInOtpScreenDetails> {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 24.w),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(height: 20.h),
-          const ForgotPasswordAppBar(),
-          const OtpScreenHeader(),
-          SizedBox(height: 28.h),
-          OtpFields(key: widget.otpKey),
-          const Center(child: OtpTimer()),
-          SizedBox(height: 40.h),
-          CustomButton(
-            onTap: () {
-              final otpCode = widget.otpKey.currentState?.getOtpCode() ?? '';
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: 20.h),
+            const ForgotPasswordAppBar(),
+            OtpScreenHeader(email: widget.email.toString()),
+            SizedBox(height: 28.h),
+            OtpFields(key: widget.otpKey),
+            const Center(child: OtpTimer()),
+            SizedBox(height: 40.h),
+            CustomButton(
+              onTap: () {
+                final otpCode = widget.otpKey.currentState?.getOtpCode() ?? '';
 
-              if (otpCode.length == 4) {
-                context.read<CheckLoginOtpCodeCubit>().checkLoginOtpCode(
+                if (otpCode.length == 4) {
+                  context.read<CheckLoginOtpCodeCubit>().checkLoginOtpCode(
+                    email: widget.email,
+                    code: otpCode,
+                  );
+                } else {
+                  customShowSnackBar(
+                    context,
+                    title: 'من فضلك أدخل كود التحقق كامل',
+                  );
+                }
+              },
+              titleWidget: widget.isLoading
+                  ? const CircularProgressIndicator(color: Colors.white)
+                  : Text(
+                      'تسجيل الدخول',
+                      style: AppTextStyles.styleAlmaraiExtraBold14(
+                        context,
+                      ).copyWith(color: Colors.white),
+                    ),
+            ),
+            SizedBox(height: 20.h),
+            DidNotReceiveCode(
+              onTap: () {
+                context.read<ReSendLoginOtpCodeCubit>().reSendLoginOtpCode(
                   email: widget.email,
-                  code: otpCode,
                 );
-              } else {
-                customShowSnackBar(
-                  context,
-                  title: 'من فضلك أدخل كود التحقق كامل',
-                );
-              }
-            },
-            titleWidget: widget.isLoading
-                ? const CircularProgressIndicator(color: Colors.white)
-                : Text(
-                    'تسجيل الدخول',
-                    style: AppTextStyles.styleAlmaraiExtraBold14(
-                      context,
-                    ).copyWith(color: Colors.white),
-                  ),
-          ),
-          SizedBox(height: 20.h),
-          DidNotReceiveCode(
-            onTap: () {
-              context.read<ReSendLoginOtpCodeCubit>().reSendLoginOtpCode(
-                email: widget.email,
-              );
-            },
-          ),
-        ],
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:shajara_tech/features/auth/presentation/screen/login_otp_screen.dart';
 import 'package:shajara_tech/features/home/domain/entity/occasion_entity.dart';
 import 'package:shajara_tech/features/news/domain/entity/news_entity.dart';
+import 'package:shajara_tech/features/occasion/presentation/screen/occasion_screen.dart';
 import 'package:shajara_tech/features/occasion_details/presentation/view/occasion_details.dart';
 import 'package:shajara_tech/features/profile/presentation/screens/delete_account_screen.dart';
 import 'package:shajara_tech/features/tribe_details/presentation/screen/tribe_details_screen.dart';
@@ -50,6 +51,7 @@ class AppRouter {
   static const kContactUsScreen = '/ContactUsScreen';
   static const kJoinUsScreen = '/JoinUsScreen';
   static const kDeleteAccountScreen = '/DeleteAccountScreen';
+  static const kOccasionScreen = '/OccasionScreen';
   static const kOccasionDetailsScreen = '/OccasionDetailsScreen';
   static final router = GoRouter(
     routes: [
@@ -105,6 +107,10 @@ class AppRouter {
         path: kNewsDetailsScreen,
         builder: (context, state) =>
             NewsDetailsScreen(newsEntity: state.extra as NewsEntity),
+      ),
+      GoRoute(
+        path: kOccasionScreen,
+        builder: (context, state) => const OccasionScreen(),
       ),
       GoRoute(
         path: kOccasionDetailsScreen,

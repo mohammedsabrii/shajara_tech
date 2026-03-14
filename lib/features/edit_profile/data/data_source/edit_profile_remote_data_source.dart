@@ -44,6 +44,7 @@ class EditProfileRemoteDataSourceImpl implements EditProfileRemoteDataSource {
   @override
   Future<ProfileInfo> getProfileInfo({required int userId}) async {
     final data = await apiService.get(endPoint: 'user-profiles/$userId');
+    print(data);
     return ProfileInfo.fromJson(data);
   }
 

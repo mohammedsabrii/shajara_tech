@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shajara_tech/core/utils/app_images.dart';
 import 'package:shajara_tech/features/news/presentation/screen/widgets/news_bloc_builder.dart';
-import 'package:shajara_tech/features/news/presentation/screen/widgets/news_text_field.dart';
+import 'package:shajara_tech/core/widgets/search_text_field.dart';
 
 class NewsBody extends StatelessWidget {
   const NewsBody({super.key});

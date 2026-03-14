@@ -12,7 +12,6 @@ import 'package:shajara_tech/features/auth/presentation/manager/Cubits/login_cub
 import 'package:shajara_tech/features/auth/presentation/screen/widget/do_not_have_account.dart';
 import 'package:shajara_tech/features/auth/presentation/screen/widget/logIn_button.dart';
 import 'package:shajara_tech/features/auth/presentation/screen/widget/login_header.dart';
-import 'package:shajara_tech/features/auth/presentation/screen/widget/login_with_another_ways.dart';
 
 class LoginScreenBody extends StatefulWidget {
   const LoginScreenBody({super.key});
@@ -104,8 +103,6 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
                 ),
                 SizedBox(height: 20.h),
                 const DoNotHaveAccount(),
-                SizedBox(height: 24.h),
-                const LoginWithAnotherWays(),
               ],
             ),
           ),

@@ -22,11 +22,14 @@ class HomeNewsSectionWithItems extends StatelessWidget {
               'مقالات وأخبار القبائل',
               style: AppTextStyles.styleAlmaraiBold16(context),
             ),
-            Text(
-              'عرض الكل',
-              style: AppTextStyles.styleAlmaraiRegular10(
-                context,
-              ).copyWith(color: AppColors.kPrimaryColor),
+            GestureDetector(
+              onTap: () => GoRouter.of(context).push(AppRouter.kNewsScreen),
+              child: Text(
+                'عرض الكل',
+                style: AppTextStyles.styleAlmaraiRegular10(
+                  context,
+                ).copyWith(color: AppColors.kPrimaryColor),
+              ),
             ),
           ],
         ),
@@ -37,16 +40,14 @@ class HomeNewsSectionWithItems extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             padding: EdgeInsets.only(left: 14.w),
             itemCount: newsEntity.length,
-            itemBuilder: (context, index) => Expanded(
-              child: GestureDetector(
-                onTap: () => GoRouter.of(
-                  context,
-                ).push(AppRouter.kNewsDetailsScreen, extra: newsEntity[index]),
-                child: HomeNewsSectionItem(
-                  imageUrl: newsEntity[index].newsImage,
-                  newsTitle: newsEntity[index].newsTitle,
-                  date: newsEntity[index].newsDate,
-                ),
+            itemBuilder: (context, index) => GestureDetector(
+              onTap: () => GoRouter.of(
+                context,
+              ).push(AppRouter.kNewsDetailsScreen, extra: newsEntity[index]),
+              child: HomeNewsSectionItem(
+                imageUrl: newsEntity[index].newsImage,
+                newsTitle: newsEntity[index].newsTitle,
+                date: newsEntity[index].newsDate,
               ),
             ),
           ),

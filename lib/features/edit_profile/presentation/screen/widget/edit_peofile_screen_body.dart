@@ -70,29 +70,40 @@ class _EditProfileScreenBodyState extends State<EditProfileScreenBody> {
             SizedBox(height: 32.h),
             CustomTextField(
               controller: _editUserNameController,
-              hintText: widget.profileInfoEntity.userName,
+              hintText: widget.profileInfoEntity.userName.isNotEmpty
+                  ? widget.profileInfoEntity.userName
+                  : 'ادخل الاسم',
             ),
             SizedBox(height: 16.h),
             CustomTextField(
               controller: _editUserJopController,
-              hintText: widget.profileInfoEntity.userJop,
+              hintText: widget.profileInfoEntity.userJop.isNotEmpty
+                  ? widget.profileInfoEntity.userJop
+                  : 'ادخل المهنه',
             ),
             SizedBox(height: 16.h),
             CustomDatePickerField(
               controller: _editDateOfBirthController,
-              hintText: DateFormat(
-                'yyyy-MM-dd',
-              ).format(DateTime.parse(widget.profileInfoEntity.dateOfBirth)),
+              hintText: widget.profileInfoEntity.dateOfBirth.isNotEmpty
+                  ? DateFormat('yyyy-MM-dd').format(
+                      DateTime.parse(widget.profileInfoEntity.dateOfBirth),
+                    )
+                  : 'ادخل تاريخ الميلاد',
             ),
             SizedBox(height: 16.h),
             CustomDropDownFiled(
               controller: _editUserLifeStatusController,
-              hint: widget.profileInfoEntity.userLifeStatus,
+              hint: widget.profileInfoEntity.userLifeStatus.isNotEmpty
+                  ? widget.profileInfoEntity.userLifeStatus
+                  : 'ادخل الحالة الاجتماعية',
             ),
             SizedBox(height: 16.h),
             CustomTextField(
               controller: _editUserPhoneNumperController,
-              hintText: widget.profileInfoEntity.userPhoneNumper.toString(),
+              hintText:
+                  widget.profileInfoEntity.userPhoneNumper.toString().isNotEmpty
+                  ? widget.profileInfoEntity.userPhoneNumper.toString()
+                  : 'ادخل رقم الهاتف',
               keyboardType: TextInputType.phone,
             ),
             SizedBox(height: 40.h),

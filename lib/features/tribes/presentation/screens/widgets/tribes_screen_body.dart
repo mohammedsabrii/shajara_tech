@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shajara_tech/core/utils/app_images.dart';
 import 'package:shajara_tech/features/tribes/presentation/screens/widgets/tribes_bloc_builder.dart';
-import 'package:shajara_tech/features/news/presentation/screen/widgets/news_text_field.dart';
+import 'package:shajara_tech/core/widgets/search_text_field.dart';
 
 class TribesScreenBody extends StatelessWidget {
   const TribesScreenBody({super.key});

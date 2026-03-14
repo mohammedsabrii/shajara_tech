@@ -14,4 +14,5 @@ class AppImages {
   static const kUserAvatar = 'assets/images/profile_picture.jpg';
   static const kTreeAvatarPng = 'assets/images/tree_avatar_png.png';
   static const kTestImage5 = 'assets/images/Large_Check Table.png';
+  static const kNullProfileImage = 'assets/images/null_profile_image.png';
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shajara_tech/core/utils/app_colors.dart';
 import 'package:shajara_tech/core/utils/app_images.dart';
@@ -30,7 +31,7 @@ class LogoAppBar extends StatelessWidget {
           ),
         ),
         const Spacer(),
-        Image.asset(AppImages.kShjaraTechIconpng2, height: 58.h, width: 123.w),
+        Image.asset(AppImages.kShjaraTechIconpng2, height: 53.h, width: 123.w),
         const Spacer(),
       ],
     );

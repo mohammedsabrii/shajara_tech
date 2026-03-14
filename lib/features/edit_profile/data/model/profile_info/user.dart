@@ -49,29 +49,29 @@ class User {
     id: json['id'] as int,
     name: json['name'] as String?,
     email: json['email'] as String?,
-    profilePicture: json['profile_picture'] as dynamic,
+    profilePicture: json['profile_picture'],
     role: json['role'] as String?,
     pageRoleId: json['page_role_id'] as int?,
     isSuperAdmin: json['is_super_admin'] as bool?,
-    phone: json['phone'] as dynamic,
-    job: json['job'] as dynamic,
+    phone: json['phone'],
+    job: json['job'],
     status: json['status'] as String?,
     membershipType: json['membership_type'] as String?,
-    birthDate: json['birth_date'] as String,
-    socialStatus: json['social_status'] as dynamic,
+    birthDate: json['birth_date'] as String?, // ← التعديل هنا
+    socialStatus: json['social_status'],
     lifeStatus: json['life_status'] as String?,
-    emailVerifiedAt: json['email_verified_at'] as dynamic,
+    emailVerifiedAt: json['email_verified_at'],
     createdAt: json['created_at'] == null
         ? null
-        : DateTime.parse(json['created_at'] as String),
+        : DateTime.parse(json['created_at']),
     updatedAt: json['updated_at'] == null
         ? null
-        : DateTime.parse(json['updated_at'] as String),
-    customDomain: json['custom_domain'] as dynamic,
+        : DateTime.parse(json['updated_at']),
+    customDomain: json['custom_domain'],
     profilePictureUrl: json['profile_picture_url'] as String?,
     pageRole: json['page_role'] == null
         ? null
-        : PageRole.fromJson(json['page_role'] as Map<String, dynamic>),
+        : PageRole.fromJson(json['page_role']),
   );
 
   Map<String, dynamic> toJson() => {

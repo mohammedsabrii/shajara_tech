@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shajara_tech/core/utils/app_images.dart';
 import 'package:shajara_tech/features/edit_profile/domain/entity/profile_info_entity.dart';
 
 class ProfilePicture extends StatelessWidget {
@@ -24,8 +25,15 @@ class ProfilePicture extends StatelessWidget {
               height: 110.h,
               width: 120.w,
             )
-          : Image.network(
+          : profileInfoEntity.userProfilePicture.isNotEmpty
+          ? Image.network(
               profileInfoEntity.userProfilePicture,
+              fit: BoxFit.fill,
+              height: 110.h,
+              width: 120.w,
+            )
+          : Image.asset(
+              AppImages.kNullProfileImage,
               fit: BoxFit.fill,
               height: 110.h,
               width: 120.w,

@@ -22,11 +22,14 @@ class OccasionsSectionWithItems extends StatelessWidget {
               'المناسبات القادمة القبائل',
               style: AppTextStyles.styleAlmaraiBold16(context),
             ),
-            Text(
-              'عرض الكل',
-              style: AppTextStyles.styleAlmaraiRegular10(
-                context,
-              ).copyWith(color: AppColors.kPrimaryColor),
+            GestureDetector(
+              onTap: () => GoRouter.of(context).push(AppRouter.kOccasionScreen),
+              child: Text(
+                'عرض الكل',
+                style: AppTextStyles.styleAlmaraiRegular10(
+                  context,
+                ).copyWith(color: AppColors.kPrimaryColor),
+              ),
             ),
           ],
         ),
@@ -37,17 +40,15 @@ class OccasionsSectionWithItems extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             padding: EdgeInsets.only(left: 14.w),
             itemCount: occasionEntity.length,
-            itemBuilder: (context, index) => Expanded(
-              child: GestureDetector(
-                onTap: () => GoRouter.of(context).push(
-                  AppRouter.kOccasionDetailsScreen,
-                  extra: occasionEntity[index],
-                ),
-                child: HomeOccasionSectionItem(
-                  image: occasionEntity[index].imageUrl,
-                  occasionTitle: occasionEntity[index].occasionTitle,
-                  date: occasionEntity[index].occasionTime,
-                ),
+            itemBuilder: (context, index) => GestureDetector(
+              onTap: () => GoRouter.of(context).push(
+                AppRouter.kOccasionDetailsScreen,
+                extra: occasionEntity[index],
+              ),
+              child: HomeOccasionSectionItem(
+                image: occasionEntity[index].imageUrl,
+                occasionTitle: occasionEntity[index].occasionTitle,
+                date: occasionEntity[index].occasionTime,
               ),
             ),
           ),

@@ -1,6 +1,6 @@
 class ProfileInfoEntity {
   final int userId;
-  final dynamic userProfilePicture;
+  final String userProfilePicture;
   final String userName;
   final String userJop;
   final String dateOfBirth;

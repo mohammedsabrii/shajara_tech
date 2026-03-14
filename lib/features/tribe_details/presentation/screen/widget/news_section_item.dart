@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:shajara_tech/core/utils/app_colors.dart';
 import 'package:shajara_tech/core/utils/app_text_styles.dart';
-import 'package:shajara_tech/features/news/presentation/screen/widgets/section_item.dart';
+import 'package:shajara_tech/features/tribe_details/presentation/screen/widget/section_item.dart';
 import 'package:shajara_tech/features/tribes/domain/entitys/tribe_news_entity.dart';
 
 class NewsSectionWithItems extends StatelessWidget {
