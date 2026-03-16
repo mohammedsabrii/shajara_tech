@@ -1,11 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shajara_tech/core/service/api_service.dart';
-import 'package:shajara_tech/features/NewsDetails/data/data_source/news_details_remote_data_source.dart';
-import 'package:shajara_tech/features/NewsDetails/data/repo/news_details_repo.dart';
-import 'package:shajara_tech/features/NewsDetails/domain/repo/news_details_repo.dart';
-import 'package:shajara_tech/features/NewsDetails/domain/use_case/get_news_details_use_case.dart';
-import 'package:shajara_tech/features/NewsDetails/presentation/manager/cubit/cubit/news_details_cubit.dart';
 import 'package:shajara_tech/features/auth/data/data_sources/auth_local_data_source.dart';
 import 'package:shajara_tech/features/auth/data/data_sources/auth_remote_data_source.dart';
 import 'package:shajara_tech/features/auth/data/repo/auth_interceptor.dart';
@@ -47,26 +42,11 @@ import 'package:shajara_tech/features/edit_profile/domain/use_cases/update_profi
 import 'package:shajara_tech/features/edit_profile/presentation/manager/cubit/edit_profile_info_cubit/edit_profile_info_cubit.dart';
 import 'package:shajara_tech/features/edit_profile/presentation/manager/cubit/edit_profile_picture_cubit/edit_profile_picture_cubit.dart';
 import 'package:shajara_tech/features/edit_profile/presentation/manager/cubit/get_profile_info_cubit/get_profile_info_cubit.dart';
-import 'package:shajara_tech/features/home/data/data_source/occasion_remote_data_source.dart';
-import 'package:shajara_tech/features/home/data/repo/occasion_repo_impl.dart';
-import 'package:shajara_tech/features/home/domain/repo/occasion_repo.dart';
-import 'package:shajara_tech/features/home/domain/use_case/get_occasions_use_case.dart';
-import 'package:shajara_tech/features/home/presentation/manager/cubit/get_occasions_cubit/get_occasions_cubit.dart';
 import 'package:shajara_tech/features/join_us/data/data_source/join_us_remote_data_source.dart';
 import 'package:shajara_tech/features/join_us/data/repo/join_us_repo_impl.dart';
 import 'package:shajara_tech/features/join_us/domain/repo/join_us_repo.dart';
 import 'package:shajara_tech/features/join_us/domain/use_cases/join_us_use_case.dart';
 import 'package:shajara_tech/features/join_us/presentation/manager/cubit/join_us_cubit/join_us_cubit.dart';
-import 'package:shajara_tech/features/news/data/data_source/news_remote_data_source.dart';
-import 'package:shajara_tech/features/news/data/repo/news_repo_impl.dart';
-import 'package:shajara_tech/features/news/domain/repo/news_repo.dart';
-import 'package:shajara_tech/features/news/domain/use_cases/get_news_use_case.dart';
-import 'package:shajara_tech/features/news/presentation/manager/cubit/cubit/get_news_cubit.dart';
-import 'package:shajara_tech/features/occasion_details/data/data_source/occasion_details_remote_data_source.dart';
-import 'package:shajara_tech/features/occasion_details/data/repo/occasion_details_repo.dart';
-import 'package:shajara_tech/features/occasion_details/domain/repo/occasion_details_repo.dart';
-import 'package:shajara_tech/features/occasion_details/domain/use_case/get_occasion_details_use_case.dart';
-import 'package:shajara_tech/features/occasion_details/presentation/manager/cubit/get_occasion_cubit/occasion_details_cubit.dart';
 import 'package:shajara_tech/features/profile/data/data_source/delete_account_data_source.dart';
 import 'package:shajara_tech/features/profile/data/repo/delete_account_repo_impl.dart';
 import 'package:shajara_tech/features/profile/domain/repo/delete_account_repo.dart';
@@ -109,12 +89,12 @@ Future<void> initServiceLocator() async {
   _initNotification();
   _initChat();
   _initTribes();
-  _initOccasions();
-  _initNews();
+  // _initOccasions();
+  // _initNews();
   _initJoinUs();
   _initDeleteAccount();
-  _initNewsDetails();
-  _initOccasionDetails();
+  // _initNewsDetails();
+  // _initOccasionDetails();
 }
 
 void _initCore() {
@@ -341,41 +321,41 @@ void _initTribes() {
   sl.registerFactory(() => GetTribesCubit(sl<GetTribesUseCase>()));
 }
 
-void _initOccasions() {
-  //dataSource//
-  sl.registerLazySingleton<OccasionRemoteDataSource>(
-    () => OccasionRemoteDataSourceImpl(apiService: sl<ApiService>()),
-  );
-  //repo//
-  sl.registerLazySingleton<OccasionRepo>(
-    () => OccasionRepoImpl(
-      occasionRemoteDataSource: sl<OccasionRemoteDataSource>(),
-    ),
-  );
-  //use cases//
-  sl.registerLazySingleton(
-    () => GetOccasionsUseCase(occasionRepo: sl<OccasionRepo>()),
-  );
+// void _initOccasions() {
+//   //dataSource//
+//   sl.registerLazySingleton<OccasionRemoteDataSource>(
+//     () => OccasionRemoteDataSourceImpl(apiService: sl<ApiService>()),
+//   );
+//   //repo//
+//   sl.registerLazySingleton<OccasionRepo>(
+//     () => OccasionRepoImpl(
+//       occasionRemoteDataSource: sl<OccasionRemoteDataSource>(),
+//     ),
+//   );
+//   //use cases//
+//   sl.registerLazySingleton(
+//     () => GetOccasionsUseCase(occasionRepo: sl<OccasionRepo>()),
+//   );
 
-  //cubit//
-  sl.registerFactory(() => GetOccasionsCubit(sl<GetOccasionsUseCase>()));
-}
+//   //cubit//
+//   sl.registerFactory(() => GetOccasionsCubit(sl<GetOccasionsUseCase>()));
+// }
 
-void _initNews() {
-  //dataSource//
-  sl.registerLazySingleton<NewsRemoteDataSource>(
-    () => NewsRemoteDataSourceImpl(apiService: sl<ApiService>()),
-  );
-  //repo//
-  sl.registerLazySingleton<NewsRepo>(
-    () => NewsRepoImpl(newsRemoteDataSource: sl<NewsRemoteDataSource>()),
-  );
-  //use cases//
-  sl.registerLazySingleton(() => GetNewsUseCase(newsRepo: sl<NewsRepo>()));
+// void _initNews() {
+//   //dataSource//
+//   sl.registerLazySingleton<NewsRemoteDataSource>(
+//     () => NewsRemoteDataSourceImpl(apiService: sl<ApiService>()),
+//   );
+//   //repo//
+//   sl.registerLazySingleton<NewsRepo>(
+//     () => NewsRepoImpl(newsRemoteDataSource: sl<NewsRemoteDataSource>()),
+//   );
+//   //use cases//
+//   sl.registerLazySingleton(() => GetNewsUseCase(newsRepo: sl<NewsRepo>()));
 
-  //cubit//
-  sl.registerFactory(() => GetNewsCubit(sl<GetNewsUseCase>()));
-}
+//   //cubit//
+//   sl.registerFactory(() => GetNewsCubit(sl<GetNewsUseCase>()));
+// }
 
 void _initJoinUs() {
   //dataSource//
@@ -425,46 +405,46 @@ void _initDeleteAccount() {
   );
 }
 
-void _initNewsDetails() {
-  //dataSource//
-  sl.registerLazySingleton<NewsDetailsRemoteDataSource>(
-    () => NewsDetailsRemoteDataSourceImpl(apiService: sl<ApiService>()),
-  );
-  //repo//
-  sl.registerLazySingleton<NewsDetailsRepo>(
-    () => NewsDetailsRepoImpl(
-      newsDetailsRemoteDataSource: sl<NewsDetailsRemoteDataSource>(),
-    ),
-  );
-  //use cases//
-  sl.registerLazySingleton(
-    () => GetNewsDetailsUseCase(newsDetailsRepo: sl<NewsDetailsRepo>()),
-  );
+// void _initNewsDetails() {
+//   //dataSource//
+//   sl.registerLazySingleton<NewsDetailsRemoteDataSource>(
+//     () => NewsDetailsRemoteDataSourceImpl(apiService: sl<ApiService>()),
+//   );
+//   //repo//
+//   sl.registerLazySingleton<NewsDetailsRepo>(
+//     () => NewsDetailsRepoImpl(
+//       newsDetailsRemoteDataSource: sl<NewsDetailsRemoteDataSource>(),
+//     ),
+//   );
+//   //use cases//
+//   sl.registerLazySingleton(
+//     () => GetNewsDetailsUseCase(newsDetailsRepo: sl<NewsDetailsRepo>()),
+//   );
 
-  //cubit//
-  sl.registerFactory(() => GetNewsDetailsCubit(sl<GetNewsDetailsUseCase>()));
-}
+//   //cubit//
+//   sl.registerFactory(() => GetNewsDetailsCubit(sl<GetNewsDetailsUseCase>()));
+// }
 
-void _initOccasionDetails() {
-  //dataSource//
-  sl.registerLazySingleton<OccasionDetailsRemoteDataSource>(
-    () => OccasionDetailsRemoteDataSourceImpl(apiService: sl<ApiService>()),
-  );
-  //repo//
-  sl.registerLazySingleton<OccasionDetailsRepo>(
-    () => OccasionDetailsRepoImpl(
-      occasionDetailsRemoteDataSource: sl<OccasionDetailsRemoteDataSource>(),
-    ),
-  );
-  //use cases//
-  sl.registerLazySingleton(
-    () => GetOccasionDetailsUseCase(
-      occasionDetailsRepo: sl<OccasionDetailsRepo>(),
-    ),
-  );
+// void _initOccasionDetails() {
+//   //dataSource//
+//   sl.registerLazySingleton<OccasionDetailsRemoteDataSource>(
+//     () => OccasionDetailsRemoteDataSourceImpl(apiService: sl<ApiService>()),
+//   );
+//   //repo//
+//   sl.registerLazySingleton<OccasionDetailsRepo>(
+//     () => OccasionDetailsRepoImpl(
+//       occasionDetailsRemoteDataSource: sl<OccasionDetailsRemoteDataSource>(),
+//     ),
+//   );
+//   //use cases//
+//   sl.registerLazySingleton(
+//     () => GetOccasionDetailsUseCase(
+//       occasionDetailsRepo: sl<OccasionDetailsRepo>(),
+//     ),
+//   );
 
-  //cubit//
-  sl.registerFactory(
-    () => GetOccasionDetailsCubit(sl<GetOccasionDetailsUseCase>()),
-  );
-}
+//   //cubit//
+//   sl.registerFactory(
+//     () => GetOccasionDetailsCubit(sl<GetOccasionDetailsUseCase>()),
+//   );
+// }

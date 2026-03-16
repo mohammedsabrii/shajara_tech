@@ -17,7 +17,7 @@ class EditProfileInfoUseCase {
       userName: userName,
       userJop: userJop,
       dateOfBirth: dateOfBirth,
-      userLifeStatus: userLifeStatus,
+      userSocialStatus: userLifeStatus,
       userPhoneNumper: userPhoneNumper,
     );
   }

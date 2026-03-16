@@ -8,8 +8,21 @@ import 'package:shajara_tech/features/tribes/domain/repo/tribes_repo.dart';
 
 class TribesRepoImpl implements TribesRepo {
   final TribesRemoteDataSource tribesRemoteDataSource;
-
   TribesRepoImpl({required this.tribesRemoteDataSource});
+
+  @override
+  Future<Either<Failure, List<TribesEntity>>> getTribes({
+    required int perPage,
+  }) async {
+    try {
+      final response = await tribesRemoteDataSource.getTribes(perPage: perPage);
+      return Right(response);
+    } catch (e) {
+      if (e is DioException) return Left(ServerFailure.fromDiorError(e));
+      return Left(ServerFailure(e.toString()));
+    }
+  }
+
   @override
   Future<Either<Failure, TribesDetailsEntity>> getTribeDetails({
     required int tribeId,
@@ -20,22 +33,7 @@ class TribesRepoImpl implements TribesRepo {
       );
       return Right(response);
     } catch (e) {
-      if (e is DioException) {
-        return Left(ServerFailure.fromDiorError(e));
-      }
-      return Left(ServerFailure(e.toString()));
-    }
-  }
-
-  @override
-  Future<Either<Failure, List<TribesEntity>>> getTribes() async {
-    try {
-      final response = await tribesRemoteDataSource.getTribes();
-      return Right(response);
-    } catch (e) {
-      if (e is DioException) {
-        return Left(ServerFailure.fromDiorError(e));
-      }
+      if (e is DioException) return Left(ServerFailure.fromDiorError(e));
       return Left(ServerFailure(e.toString()));
     }
   }

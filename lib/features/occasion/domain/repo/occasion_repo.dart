@@ -1,0 +1,9 @@
+// import 'package:dartz/dartz.dart';
+// import 'package:shajara_tech/core/errors/failure.dart';
+// import 'package:shajara_tech/features/occasion/domain/entity/occasion_entity.dart';
+
+// abstract class OccasionRepo {
+//   Future<Either<Failure, List<OccasionEntity>>> getOccasions({
+//     required int perPage,
+//   });
+// }

@@ -12,7 +12,7 @@ class ProfileInfo extends ProfileInfoEntity {
         userName: user?.name ?? '',
         dateOfBirth: user?.birthDate ?? '',
         userJop: user?.job ?? '',
-        userLifeStatus: user?.lifeStatus ?? '',
+        userLifeStatus: user?.socialStatus ?? '',
         userPhoneNumper: user?.phone ?? '',
         userId: user?.id ?? 0,
       );

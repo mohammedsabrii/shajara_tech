@@ -21,7 +21,7 @@ class EditProfileRepoImpl implements EditProfileRepo {
     required String userName,
     required String userJop,
     required String dateOfBirth,
-    required String userLifeStatus,
+    required String userSocialStatus,
     required String userPhoneNumper,
   }) async {
     try {
@@ -30,14 +30,13 @@ class EditProfileRepoImpl implements EditProfileRepo {
         userName: userName,
         userJop: userJop,
         dateOfBirth: dateOfBirth,
-        userLifeStatus: userLifeStatus,
+        userSocialStatus: userSocialStatus,
         userPhoneNumper: userPhoneNumper,
         userId: userId!,
       );
 
       return const Right(unit);
     } catch (e) {
-      print(e.toString());
       if (e is DioException) {
         return Left(ServerFailure.fromDiorError(e));
       }

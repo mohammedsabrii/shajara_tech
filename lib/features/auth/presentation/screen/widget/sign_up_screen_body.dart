@@ -6,7 +6,6 @@ import 'package:shajara_tech/core/widgets/custom_text_field.dart';
 import 'package:shajara_tech/core/widgets/logo_app_bar.dart';
 import 'package:shajara_tech/features/auth/presentation/manager/Cubits/sign_up_cubit/sign_up_cubit.dart';
 import 'package:shajara_tech/features/auth/presentation/screen/widget/have_account_widget.dart';
-import 'package:shajara_tech/features/auth/presentation/screen/widget/login_with_another_ways.dart';
 import 'package:shajara_tech/features/auth/presentation/screen/widget/sign_up_button.dart';
 import 'package:shajara_tech/features/auth/presentation/screen/widget/sign_up_header.dart';
 
@@ -107,8 +106,6 @@ class _SignUpScreenBodyState extends State<SignUpScreenBody> {
                 ),
                 SizedBox(height: 20.h),
                 const HaveAccountWidget(),
-                SizedBox(height: 24.h),
-                const LoginWithAnotherWays(),
               ],
             ),
           ),

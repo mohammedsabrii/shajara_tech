@@ -13,9 +13,19 @@ class TribesBlocBuilder extends StatelessWidget {
     return BlocBuilder<GetTribesCubit, GetTribesState>(
       builder: (context, state) {
         if (state is GetTribesSuccess) {
-          return TribesGridView(tribesEntity: state.tribes);
+          return TribesGridView(
+            tribesEntity: state.tribes,
+            hasMore: state.hasMore,
+          );
+        } else if (state is GetTribesPaginationLoading) {
+          return TribesGridView(
+            tribesEntity: state.currentTribes,
+            hasMore: true,
+          );
         } else if (state is GetTribesFaliure) {
           return CustomErrorWidget(errorMessage: state.errorMessage);
+        } else if (state is GetTribesEmpty) {
+          return const SizedBox();
         } else {
           return const CustomCircularProgressIndicatorWidget();
         }

@@ -1,22 +1,27 @@
-part of 'get_news_cubit.dart';
+// part of 'get_news_cubit.dart';
 
-@immutable
-sealed class GetNewsState {}
+// @immutable
+// sealed class GetNewsState {}
 
-final class GetNewsInitial extends GetNewsState {}
+// final class GetNewsInitial extends GetNewsState {}
 
-final class GetNewsLoading extends GetNewsState {}
+// class GetNewsLoading extends GetNewsState {}
 
-final class GetNewsEmpty extends GetNewsState {}
+// class GetNewsPaginationLoading extends GetNewsState {
+//   final List<NewsEntity> currentNews;
+//   GetNewsPaginationLoading(this.currentNews);
+// }
 
-final class GetNewsSuccess extends GetNewsState {
-  final List<NewsEntity> newsEntity;
+// final class GetNewsEmpty extends GetNewsState {}
 
-  GetNewsSuccess({required this.newsEntity});
-}
+// class GetNewsSuccess extends GetNewsState {
+//   final List<NewsEntity> newsEntity;
+//   final bool hasMore;
+//   GetNewsSuccess({required this.newsEntity, required this.hasMore});
+// }
 
-final class GetNewsFailure extends GetNewsState {
-  final String errorMessage;
+// final class GetNewsFailure extends GetNewsState {
+//   final String errorMessage;
 
-  GetNewsFailure({required this.errorMessage});
-}
+//   GetNewsFailure({required this.errorMessage});
+// }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
-import 'package:shajara_tech/core/utils/app_colors.dart';
 import 'package:shajara_tech/core/utils/app_text_styles.dart';
 import 'package:shajara_tech/features/tribe_details/presentation/screen/widget/section_item.dart';
 import 'package:shajara_tech/features/tribes/domain/entitys/tribe_news_entity.dart';
@@ -20,26 +19,17 @@ class NewsSectionWithItems extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(title, style: AppTextStyles.styleAlmaraiBold16(context)),
-            Text(
-              'عرض الكل',
-              style: AppTextStyles.styleAlmaraiRegular10(
-                context,
-              ).copyWith(color: AppColors.kPrimaryColor),
-            ),
-          ],
-        ),
+        Text(title, style: AppTextStyles.styleAlmaraiBold16(context)),
         SizedBox(height: 16.h),
         SizedBox(
           height: 190.h,
-          child: ListView.builder(
+          child: ListView.separated(
             scrollDirection: Axis.horizontal,
             padding: EdgeInsets.only(left: 14.w),
-            itemCount: newsEntity?.length,
-            itemBuilder: (context, index) => Expanded(
+            itemCount: newsEntity?.length ?? 0,
+            separatorBuilder: (context, index) => SizedBox(width: 16.w),
+            itemBuilder: (context, index) => SizedBox(
+              width: 160.w,
               child: SectionItem(
                 title: newsEntity?[index].tribeNewsShortDescription ?? '',
                 date: newsEntity?[index].tribeNewsDate != null

@@ -10,7 +10,7 @@ abstract class EditProfileRemoteDataSource {
     required String userName,
     required String userJop,
     required String dateOfBirth,
-    required String userLifeStatus,
+    required String userSocialStatus,
     required String userPhoneNumper,
     required int userId,
   });
@@ -26,7 +26,7 @@ class EditProfileRemoteDataSourceImpl implements EditProfileRemoteDataSource {
     required String userName,
     required String userJop,
     required String dateOfBirth,
-    required String userLifeStatus,
+    required String userSocialStatus,
     required String userPhoneNumper,
     required int userId,
   }) async {
@@ -35,8 +35,9 @@ class EditProfileRemoteDataSourceImpl implements EditProfileRemoteDataSource {
       data: {
         "name": userName,
         "phone": userPhoneNumper,
+        "job": userJop,
         "birth_date": dateOfBirth,
-        "life_status": userLifeStatus,
+        "social_status": userSocialStatus,
       },
     );
   }

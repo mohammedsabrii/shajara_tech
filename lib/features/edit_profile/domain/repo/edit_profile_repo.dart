@@ -10,7 +10,7 @@ abstract class EditProfileRepo {
     required String userName,
     required String userJop,
     required String dateOfBirth,
-    required String userLifeStatus,
+    required String userSocialStatus,
     required String userPhoneNumper,
   });
   Future<Either<Failure, Unit>> updateProfilePicture(File image);

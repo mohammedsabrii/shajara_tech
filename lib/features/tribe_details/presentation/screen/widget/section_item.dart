@@ -11,58 +11,50 @@ class SectionItem extends StatelessWidget {
     required this.date,
     required this.imageUrl,
   });
+
   final String title;
   final String date;
   final String imageUrl;
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 200.w,
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: Image.network(
-              imageUrl,
-              height: 132.h,
-              width: 156,
-              fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) => Container(
-                height: 140,
-                color: Colors.grey[300],
-                child: const Center(
-                  child: Icon(Icons.image, size: 40, color: Colors.grey),
-                ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(8.r),
+          child: Image.network(
+            imageUrl,
+            height: 132.h,
+            width: double.infinity,
+            fit: BoxFit.cover,
+          ),
+        ),
+        SizedBox(height: 6.h),
+
+        Row(
+          children: [
+            SvgPicture.asset(AppIcons.kLetsIconsDate),
+            SizedBox(width: 5.w),
+            Expanded(
+              child: Text(
+                date,
+                style: AppTextStyles.styleAlmaraiRegular10(context),
+                overflow: TextOverflow.ellipsis,
               ),
             ),
-          ),
+          ],
+        ),
 
-          const SizedBox(height: 3),
+        SizedBox(height: 4.h),
 
-          Row(
-            children: [
-              SvgPicture.asset(AppIcons.kLetsIconsDate),
-              const SizedBox(width: 5),
-              Text(date, style: AppTextStyles.styleAlmaraiRegular10(context)),
-            ],
-          ),
-          const SizedBox(height: 1),
-
-          SizedBox(
-            width: 147.w,
-            child: Text(
-              title,
-              textAlign: TextAlign.right,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: AppTextStyles.styleAlmaraiRegular10(context),
-            ),
-          ),
-          const SizedBox(height: 6),
-        ],
-      ),
+        Text(
+          title,
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+          style: AppTextStyles.styleAlmaraiRegular10(context),
+        ),
+      ],
     );
   }
 }

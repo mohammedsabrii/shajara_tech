@@ -1,22 +1,26 @@
 part of 'get_tribes_cubit.dart';
 
 @immutable
-sealed class GetTribesState {}
+abstract class GetTribesState {}
 
-final class GetTribesInitial extends GetTribesState {}
+class GetTribesInitial extends GetTribesState {}
 
-final class GetTribesLoading extends GetTribesState {}
+class GetTribesLoading extends GetTribesState {}
 
-final class GetTribesEmpty extends GetTribesState {}
-
-final class GetTribesSuccess extends GetTribesState {
-  final List<TribesEntity> tribes;
-
-  GetTribesSuccess({required this.tribes});
+class GetTribesPaginationLoading extends GetTribesState {
+  final List<TribesEntity> currentTribes;
+  GetTribesPaginationLoading(this.currentTribes);
 }
 
-final class GetTribesFaliure extends GetTribesState {
-  final String errorMessage;
+class GetTribesSuccess extends GetTribesState {
+  final List<TribesEntity> tribes;
+  final bool hasMore;
+  GetTribesSuccess({required this.tribes, required this.hasMore});
+}
 
+class GetTribesEmpty extends GetTribesState {}
+
+class GetTribesFaliure extends GetTribesState {
+  final String errorMessage;
   GetTribesFaliure({required this.errorMessage});
 }

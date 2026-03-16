@@ -81,9 +81,11 @@ class _JoinUsScreenBodyState extends State<JoinUsScreenBody> {
               controller: _userLifeStatusController,
               hint: 'الحالة الاجتماعية',
             ),
+            SizedBox(height: 16.h),
+
             CustomTextField(
               controller: _phoneController,
-              hintText: 'رقم الجوال',
+              hintText: 'رقم الهاتف',
             ),
             SizedBox(height: 16.h),
             CustomTextField(
