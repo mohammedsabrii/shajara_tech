@@ -37,6 +37,7 @@ class EditProfileRepoImpl implements EditProfileRepo {
 
       return const Right(unit);
     } catch (e) {
+      print(e.toString());
       if (e is DioException) {
         return Left(ServerFailure.fromDiorError(e));
       }

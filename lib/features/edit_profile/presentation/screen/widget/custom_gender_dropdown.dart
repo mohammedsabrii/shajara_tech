@@ -27,9 +27,9 @@ class _CustomDropDownFiledState extends State<CustomDropDownFiled> {
   String _getEmotionalState(EmotionalState gender) {
     switch (gender) {
       case EmotionalState.single:
-        return 'single';
+        return 'أعزب';
       case EmotionalState.married:
-        return 'married';
+        return 'متزوج';
     }
   }
 
